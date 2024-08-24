@@ -9,10 +9,31 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #333;
+.titles-section {
+    margin-bottom: 2rem;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.titles-list {
+    list-style-type: decimal;
+    padding: 0;
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.title-item {
+    font-size: 1rem;
+    color: #007bff;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.title-item:hover {
+    color: #0056b3;
 }
 
 .post {
@@ -22,6 +43,12 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .post h3 {
@@ -36,13 +63,13 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-.post a {
+.read-more-link {
     text-decoration: none;
     color: #007bff;
     font-weight: bold;
 }
 
-.post a:hover {
+.read-more-link:hover {
     text-decoration: underline;
     color: #0056b3;
 }
@@ -53,8 +80,13 @@ h2 {
         padding: 0.5rem;
     }
 
-    h2 {
-        font-size: 1.75rem;
+    .titles-section h2,
+    .posts-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .title-item {
+        font-size: 1.1rem;
     }
 
     .post h3 {
@@ -71,8 +103,13 @@ h2 {
         padding: 0.5rem;
     }
 
-    h2 {
-        font-size: 1.5rem;
+    .titles-section h2,
+    .posts-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .title-item {
+        font-size: 1rem;
     }
 
     .post h3 {

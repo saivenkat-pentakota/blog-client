@@ -1,0 +1,42 @@
+/* SideBar.css */
+
+.sidebar {
+  padding: 1rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin: 1rem 0;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar nav ul li.active a,
+.sidebar nav ul li a:hover {
+  background-color: #6947BF; 
+  padding: 0.5rem 1rem; 
+}
+
+.sidebar nav ul li.active img,
+.sidebar nav ul li a:hover img {
+  filter: brightness(2.5) invert(1);
+}
+
+
+
+.sidebar img {
+  width: 24px; 
+  height: 24px;
+}

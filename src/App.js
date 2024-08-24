@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
 import CreatePost from './components/CreatePost';
 import './App.css'; 
+import SideBar from './components/SideBar';
 
 const App = () => {
     return (
@@ -17,16 +18,7 @@ const App = () => {
                     </nav>
                 </header>
                 <div className="content-wrapper">
-                    <aside className="sidebar">
-                        <nav>
-                            <ul>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/create">Create Post</Link></li>
-                                <li><Link to="/profile">Profile</Link></li>
-                                <li><Link to="/settings">Settings</Link></li>
-                            </ul>
-                        </nav>
-                    </aside>
+                    <SideBar/>
                     <main className="main-content">
                         <Routes>
                             <Route path="/" element={<PostList />} />

@@ -5,36 +5,46 @@ import './CreatePost.css';
 const CreatePost = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [imageFile, setImageFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+
+    const handleFileChange = (e) => {
+        setImageFile(e.target.files[0]);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Basic client-side validation
         if (!title || !content) {
             setErrorMessage('Both title and content are required.');
             return;
         }
 
-        // Clear any previous error messages
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+        if (imageFile) {
+            formData.append('imageFile', imageFile);
+        }
+
         setErrorMessage('');
 
-        axios.post('http://localhost:5002/posts', { title, content })
-            .then(response => {
-                setSuccessMessage('Post created successfully!');
-                setTitle('');
-                setContent('');
-                
-                // Optional: Show a pop-out message
-                setTimeout(() => {
-                    alert('Post created successfully!');
-                }, 500);
-            })
-            .catch(error => {
-                console.error(error);
-                setErrorMessage('Failed to create post. Please try again.');
-            });
+        axios.post('http://localhost:5003/posts', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(response => {
+            setSuccessMessage('Post created successfully!');
+            setTitle('');
+            setContent('');
+            setImageFile(null);
+        })
+        .catch(error => {
+            console.error(error);
+            setErrorMessage('Failed to create post. Please try again.');
+        });
     };
 
     return (
@@ -49,13 +59,20 @@ const CreatePost = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className="content">
                     <label>Content:</label>
                     <textarea 
                         value={content} 
                         onChange={(e) => setContent(e.target.value)} 
                         required 
                     ></textarea>
+                </div>
+                <div className="image-upload">
+                    <label>Upload Image:</label>
+                    <input 
+                        type="file" 
+                        onChange={handleFileChange} 
+                    />
                 </div>
                 <button type="submit">Create Post</button>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
