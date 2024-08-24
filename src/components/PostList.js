@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './PostList.css';
 
 const PostList = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/posts')
+        axios.get('http://localhost:5002/posts')
             .then(response => setPosts(response.data))
             .catch(error => console.error(error));
     }, []);
 
     return (
-        <div>
+        <div className="container">
             <h2>Blog Posts</h2>
             {posts.map(post => (
-                <div key={post._id}>
+                <div key={post._id} className="post">
                     <h3>{post.title}</h3>
-                    <p>{post.content.substring(0, 100)}...</p>
+                    <p>{post.content.substring(0, 500)}...</p>
                     <Link to={`/posts/${post._id}`}>Read More</Link>
                 </div>
             ))}
@@ -26,3 +27,4 @@ const PostList = () => {
 };
 
 export default PostList;
+
