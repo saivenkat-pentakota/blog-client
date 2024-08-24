@@ -20,7 +20,7 @@ const PostList = () => {
     return (
         <div className="container">
             <div className="titles-section">
-                <h1>Contents</h1>
+                <h2>Contents</h2>
                 <ul className="titles-list">
                     {posts.map(post => (
                         <li
