@@ -25,9 +25,9 @@ const PostList = () => {
                 <ul className="titles-list">
                     {posts.map(post => (
                         <li
-                            key={uuidv4()} // Generate a unique UUID for each key
-                            onClick={() => handleTitleClick(post._id)}
-                            className={`title-item ${selectedPostId === post._id ? 'active' : ''}`}
+                            key={uuidv4()} 
+                            onClick={() => handleTitleClick(post.id)}
+                            className={`title-item ${selectedPostId === post.id ? 'active' : ''}`}
                         >
                             {post.title}
                         </li>
@@ -44,7 +44,7 @@ const PostList = () => {
                         )}
                         <h3>{post.title}</h3>
                         <p>{post.content.substring(0, 200)}...</p>
-                        <Link to = {`/posts/${post._id}`} className="read-more-link">Read More</Link>
+                        <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
                     </div>
                 ))}
             </div>

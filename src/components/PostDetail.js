@@ -8,6 +8,7 @@ const PostDetail = () => {
     const [post, setPost] = useState(null);
 
     useEffect(() => {
+        console.log("Post ID:", id);  
         axios.get(`https://blog-app-c2bf.onrender.com/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
