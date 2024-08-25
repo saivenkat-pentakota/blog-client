@@ -30,7 +30,7 @@ const CreatePost = () => {
 
         setErrorMessage('');
 
-        axios.post('http://localhost:4090/posts', formData, {
+        axios.post('https://blog-app-c2bf.onrender.com/posts', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
