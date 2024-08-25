@@ -8,7 +8,7 @@ const PostDetail = () => {
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:5003/posts/${id}`)
+        axios.get(`http://localhost:4090/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
     }, [id]);
@@ -20,7 +20,7 @@ const PostDetail = () => {
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
-                <img src={`http://localhost:5003/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
+                <img src={`http://localhost:4090/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
             )}
         </div>
     );

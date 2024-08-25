@@ -8,7 +8,7 @@ const PostList = () => {
     const [selectedPostId, setSelectedPostId] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:5003/posts')
+        axios.get('http://localhost:4090/posts')
             .then(response => setPosts(response.data))
             .catch(error => console.error(error));
     }, []);
@@ -39,7 +39,7 @@ const PostList = () => {
                 {posts.map(post => (
                     <div key={post._id} className="post">
                         {post.imageFile && (
-                            <img src={`http://localhost:5003/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
+                            <img src={`http://localhost:4090/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
                         )}
                         <h3>{post.title}</h3>
                         <p>{post.content.substring(0, 200)}...</p>

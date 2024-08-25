@@ -30,7 +30,7 @@ const CreatePost = () => {
 
         setErrorMessage('');
 
-        axios.post('http://localhost:5003/posts', formData, {
+        axios.post('http://localhost:4090/posts', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
