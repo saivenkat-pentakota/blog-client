@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './PostDetail.css';
 
 const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log("Post ID:", id);  
@@ -18,6 +19,7 @@ const PostDetail = () => {
 
     return (
         <div className='PostDetailContainer'>
+            <div onClick={() => navigate('/')} className="navigate">←</div>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
