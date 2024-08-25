@@ -16,7 +16,7 @@ const PostDetail = () => {
     if (!post) return <div>Loading...</div>;
 
     return (
-        <div className='container'>
+        <div className='PostDetailContainer'>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (

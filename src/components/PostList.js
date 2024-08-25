@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import './PostList.css';
 
 const PostList = () => {
@@ -18,13 +19,13 @@ const PostList = () => {
     };
 
     return (
-        <div className="container">
+        <div className="PostListContainer">
             <div className="titles-section">
                 <h2>Contents</h2>
                 <ul className="titles-list">
                     {posts.map(post => (
                         <li
-                            key={post._id}
+                            key={uuidv4()} // Generate a unique UUID for each key
                             onClick={() => handleTitleClick(post._id)}
                             className={`title-item ${selectedPostId === post._id ? 'active' : ''}`}
                         >
@@ -37,13 +38,13 @@ const PostList = () => {
             <div className="posts-section">
                 <h3>All Posts</h3>
                 {posts.map(post => (
-                    <div key={post._id} className="post">
+                    <div key={uuidv4()} className="post">
                         {post.imageFile && (
                             <img src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
                         )}
                         <h3>{post.title}</h3>
                         <p>{post.content.substring(0, 200)}...</p>
-                        <Link to={`/posts/${post._id}`} className="read-more-link">Read More</Link>
+                        <Link to = {`/posts/${post._id}`} className="read-more-link">Read More</Link>
                     </div>
                 ))}
             </div>

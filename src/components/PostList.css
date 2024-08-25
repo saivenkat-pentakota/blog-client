@@ -1,6 +1,6 @@
 /* PostList.css */
 
-.container {
+.PostListContainer {
     max-width: 700px;
     margin: 1rem auto;
     padding: 1rem;
@@ -76,7 +76,7 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .container {
+    .PostListContainer {
         padding: 0.5rem;
     }
 
@@ -99,7 +99,7 @@
 }
 
 @media (max-width: 480px) {
-    .container {
+    .PostListContainer {
         padding: 0.5rem;
     }
 

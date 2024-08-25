@@ -2,6 +2,9 @@
 
 .sidebar {
   padding: 1rem;
+  height: 100%;
+  position: fixed;
+  background-color: white;
 }
 
 .sidebar nav ul {

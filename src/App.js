@@ -26,6 +26,8 @@ const App = () => {
                             <Route path="/create" element={<CreatePost />} />
                             <Route path="/profile" element={<div>Profile Page</div>} />
                             <Route path="/settings" element={<div>Settings Page</div>} />
+                            <Route path="*" element={<div>404 Not Found</div>} />
+
                         </Routes>
                     </main>
                 </div>
