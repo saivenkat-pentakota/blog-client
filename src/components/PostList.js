@@ -10,7 +10,7 @@ const PostList = () => {
     useEffect(() => {
         axios.get('https://blog-app-c2bf.onrender.com/posts')
             .then(response => setPosts(response.data))
-            .catch(error => console.error(error));
+            .catch(error => console.error('Error fetching posts:', error));
     }, []);
 
     const handleTitleClick = (id) => {
@@ -39,7 +39,11 @@ const PostList = () => {
                 {posts.map(post => (
                     <div key={post._id} className="post">
                         {post.imageFile && (
-                            <img src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
+                            <img 
+                                src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} 
+                                alt={post.title} 
+                                className="post-image" 
+                            />
                         )}
                         <h3>{post.title}</h3>
                         <p>{post.content.substring(0, 200)}...</p>
