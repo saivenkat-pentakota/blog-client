@@ -42,7 +42,7 @@ const CreatePost = () => {
             setImageFile(null);
         })
         .catch(error => {
-            console.error('Error creating post:', error);
+            console.error(error);
             setErrorMessage('Failed to create post. Please try again.');
         });
     };

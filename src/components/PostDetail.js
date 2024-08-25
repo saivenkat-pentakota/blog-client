@@ -6,18 +6,13 @@ import './PostDetail.css';
 const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         axios.get(`https://blog-app-c2bf.onrender.com/posts/${id}`)
             .then(response => setPost(response.data))
-            .catch(error => {
-                console.error('Error fetching post:', error);
-                setError('Failed to load post.');
-            });
+            .catch(error => console.error(error));
     }, [id]);
 
-    if (error) return <div>{error}</div>;
     if (!post) return <div>Loading...</div>;
 
     return (
@@ -25,11 +20,7 @@ const PostDetail = () => {
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
-                <img 
-                    src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} 
-                    alt={post.title} 
-                    className="post-image" 
-                />
+                <img src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
             )}
         </div>
     );
