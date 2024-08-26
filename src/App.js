@@ -5,18 +5,15 @@ import PostDetail from './components/PostDetail';
 import CreatePost from './components/CreatePost';
 import './App.css'; 
 import SideBar from './components/SideBar';
+import Header from './components/Header';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 const App = () => {
     return (
         <Router>
             <div className="app-container">
-                <header className="header">
-                    <h1 className="header-title">ZUAI</h1>
-                    <nav className="header-nav">
-                        <button className="btn-login">Login</button>
-                        <button className="btn-join">Join Now</button>
-                    </nav>
-                </header>
+                <Header/>
                 <div className="content-wrapper">
                     <SideBar/>
                     <main className="main-content">
@@ -26,8 +23,9 @@ const App = () => {
                             <Route path="/create" element={<CreatePost />} />
                             <Route path="/profile" element={<div>Profile Page</div>} />
                             <Route path="/settings" element={<div>Settings Page</div>} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/signup" element={<Signup />} />
                             <Route path="*" element={<div>404 Not Found</div>} />
-
                         </Routes>
                     </main>
                 </div>
