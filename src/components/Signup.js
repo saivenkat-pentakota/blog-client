@@ -1,4 +1,3 @@
-// Signup.js
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -9,11 +8,16 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post('https://blog-app-c2bf.onrender.com/api/auth/signup', data); // Ensure correct URL
+      const res = await axios.post('https://blog-app-c2bf.onrender.com/api/auth/signup', data);
       localStorage.setItem('token', res.data.token);
       // Optionally redirect user after signup
     } catch (err) {
-      console.error('Signup Error:', err.response ? err.response.data : err.message);
+      if (err.response && err.response.data.error === 'Email is already registered') {
+        console.error('Signup Error: Email already in use');
+        // Optionally display an error message to the user
+      } else {
+        console.error('Signup Error:', err.response ? err.response.data : err.message);
+      }
     }
   };
 
