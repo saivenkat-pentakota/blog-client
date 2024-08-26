@@ -10,50 +10,54 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      if (token) {
-        try {
-          const res = await axios.get('/api/auth/check', {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          if (res.data.isLoggedIn) {
-            setIsLoggedIn(true);
-            setUserEmail(res.data.email || '');
-          } else {
+        console.log('Checking login status with token:', localStorage.getItem('authToken')); // Log token
+        if (token) {
+            try {
+                const res = await axios.get('/api/auth/check', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                console.log('Login Status Response:', res.data);
+                if (res.data.isLoggedIn) {
+                    setIsLoggedIn(true);
+                    setUserEmail(res.data.email || '');
+                } else {
+                    setIsLoggedIn(false);
+                    setUserEmail('');
+                }
+            } catch (error) {
+                setIsLoggedIn(false);
+                setUserEmail('');
+                console.error('Error checking login status:', error);
+            }
+        } else {
             setIsLoggedIn(false);
             setUserEmail('');
-          }
-        } catch (error) {
-          setIsLoggedIn(false);
-          setUserEmail('');
-          console.error('Error checking login status:', error);
         }
-      } else {
-        setIsLoggedIn(false);
-        setUserEmail('');
-      }
     };
 
     checkLoginStatus();
-  }, [token]);
+}, [token]);
 
-  const login = async (email, password) => {
-    try {
+// login 
+const login = async (email, password) => {
+  try {
       const response = await axios.post('/api/auth/login', { email, password });
       const { token } = response.data;
       if (token) {
-        setToken(token);
-        localStorage.setItem('authToken', token);
-        // Fetch user email after login
-        const userResponse = await axios.get('/api/auth/user', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setIsLoggedIn(true);
-        setUserEmail(userResponse.data.email || '');
+          setToken(token);
+          localStorage.setItem('authToken', token);
+          console.log('Token stored in localStorage:', localStorage.getItem('authToken')); // Log token
+          const userResponse = await axios.get('/api/auth/user', {
+              headers: { Authorization: `Bearer ${token}` }
+          });
+          setIsLoggedIn(true);
+          setUserEmail(userResponse.data.email || '');
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Login Error:', error);
-    }
-  };
+  }
+};
+
 
   const logout = async () => {
     try {

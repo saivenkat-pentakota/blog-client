@@ -4,6 +4,8 @@ import './User.css';
 
 const User = () => {
   const { userEmail, isLoggedIn } = useAuth();
+  
+  console.log('User Component:', { userEmail, isLoggedIn });
 
   if (!isLoggedIn) {
     return <p>Please log in to view this page.</p>;
