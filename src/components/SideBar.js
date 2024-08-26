@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from '../AuthContext'; // Import the context
+import { useAuth } from '../AuthContext'; 
 import homeImg from '../Images/home.png';
 import bookImg from '../Images/book.png';
 import closedBookImg from '../Images/closedBook.png';
@@ -13,7 +13,7 @@ import './SideBar.css';
 
 const SideBar = () => {
   const location = useLocation();
-  const { isLoggedIn, userEmail } = useAuth(); // Use the context
+  const { isLoggedIn, userEmail } = useAuth(); 
 
   return (
     <aside className="sidebar">

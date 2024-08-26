@@ -1,12 +1,9 @@
 import React from 'react';
-import { useAuth } from '../AuthContext'; // Import the context
-import './User.css'; // Create a CSS file for styling
+import { useAuth } from '../AuthContext'; 
+import './User.css'; 
 
 const User = () => {
   const { userEmail, isLoggedIn } = useAuth();
-
-  console.log('User email:', userEmail);
-  console.log('Is logged in:', isLoggedIn);
 
   if (!isLoggedIn) {
     return <p>Please log in to view this page.</p>;

@@ -6,12 +6,11 @@ import './Header.css';
 
 const Header = () => {
   const { isLoggedIn, logout } = useAuth(); 
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
-  // Function to handle logout and redirect if needed
   const handleLogout = async () => {
     await logout();
-    navigate('/login'); // Redirect to login page after logout
+    navigate('/login'); 
   };
 
   return (
