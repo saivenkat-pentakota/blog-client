@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
         const res = await axios.get('/api/auth/check', {
           headers: { Authorization: `Bearer ${token}` }
         });
-
+        console.log('Login status:', res.data);
         if (res.data.isLoggedIn) {
           setIsLoggedIn(true);
           setUserEmail(res.data.email || '');
