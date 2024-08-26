@@ -8,7 +8,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post('/api/auth/login', data);
+      const res = await axios.post('https://blog-app-c2bf.onrender.com/api/auth/login', data);
       localStorage.setItem('token', res.data.token);
     } catch (err) {
       console.error(err.response.data);

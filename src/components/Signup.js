@@ -1,3 +1,4 @@
+// Signup.js
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -8,10 +9,11 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post('/api/auth/signup', data);
+      const res = await axios.post('https://blog-app-c2bf.onrender.com/api/auth/signup', data); // Ensure correct URL
       localStorage.setItem('token', res.data.token);
+      // Optionally redirect user after signup
     } catch (err) {
-      console.error(err.response.data);
+      console.error('Signup Error:', err.response ? err.response.data : err.message);
     }
   };
 
