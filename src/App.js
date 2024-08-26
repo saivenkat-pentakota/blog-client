@@ -8,6 +8,7 @@ import SideBar from './components/SideBar';
 import Header from './components/Header';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import User from './components/User';
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                             <Route path="/settings" element={<div>Settings Page</div>} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<Signup />} />
+                            <Route  path='/user' element={<User/>}/>
                             <Route path="*" element={<div>404 Not Found</div>} />
                         </Routes>
                     </main>

@@ -1,15 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const onSubmit = async (data) => {
     try {
       const res = await axios.post('https://blog-app-c2bf.onrender.com/api/auth/login', data);
       localStorage.setItem('token', res.data.token);
+
+      // Navigate to the user page and pass email in state
+      navigate('/user', { state: { email: data.email } });
     } catch (err) {
       console.error(err.response.data);
     }
@@ -28,12 +33,11 @@ const Login = () => {
         {errors.email && <span className="error">{errors.email.message}</span>}
         
         <input
-        type="password"
-        placeholder="Password"
-        {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
-        autoComplete="current-password"
-      />
-
+          type="password"
+          placeholder="Password"
+          {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
+          autoComplete="current-password"
+        />
         {errors.password && <span className="error">{errors.password.message}</span>}
         
         <button type="submit" className="btn-login">LOGIN</button>
