@@ -1,4 +1,3 @@
-// src/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -30,6 +29,9 @@ export const AuthProvider = ({ children }) => {
 
     if (token) {
       checkLoginStatus();
+    } else {
+      setIsLoggedIn(false);
+      setUserEmail('');
     }
   }, [token]);
 
