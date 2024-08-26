@@ -8,11 +8,10 @@ export const AuthProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState('');
   const [token, setToken] = useState(localStorage.getItem('authToken') || '');
 
-  // Function to check login status
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const token = localStorage.getItem('authToken');
-      console.log('Checking login status with token:', token); // Log token
+      const token = localStorage.getItem('authToken'); // Retrieve token
+      console.log('Checking login status with token:', token); // Log token to debug
   
       if (token) {
         try {
@@ -26,10 +25,12 @@ export const AuthProvider = ({ children }) => {
           } else {
             setIsLoggedIn(false);
             setUserEmail('');
+            localStorage.removeItem('authToken'); // Remove invalid token
           }
         } catch (error) {
           setIsLoggedIn(false);
           setUserEmail('');
+          localStorage.removeItem('authToken'); // Remove invalid token
           console.error('Error checking login status:', error); // Detailed error logging
         }
       } else {
@@ -42,20 +43,16 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
   
 
-
   const login = async (email, password) => {
     try {
       const response = await axios.post('/api/auth/login', { email, password });
       const { token } = response.data;
-      
       if (token) {
-        // Store the token in localStorage
-        localStorage.setItem('authToken', token);
-        console.log('Token stored in localStorage:', localStorage.getItem('authToken')); // Check if token is stored correctly
-
-        // Update state and make additional requests if necessary
         setToken(token);
-
+        localStorage.setItem('authToken', token); // Store token in localStorage
+        console.log('Token stored in localStorage:', localStorage.getItem('authToken')); // Check if token is stored correctly
+  
+        // Fetch user details
         const userResponse = await axios.get('/api/auth/user', {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -66,7 +63,8 @@ export const AuthProvider = ({ children }) => {
       console.error('Login Error:', error);
     }
   };
-
+  
+  
   const logout = async () => {
     try {
       await axios.post('/api/auth/logout', {}, {
