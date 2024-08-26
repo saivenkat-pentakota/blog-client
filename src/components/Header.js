@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext'; 
 import headerLogo from "../Images/The Write Path logo.png";
 import './Header.css';
 
 const Header = () => {
   const { isLoggedIn, logout } = useAuth(); 
+  const navigate = useNavigate(); // Hook for navigation
 
   // Function to handle logout and redirect if needed
   const handleLogout = async () => {
     await logout();
-    // Optionally redirect to home or login page after logout
-    // For example: window.location.href = '/login';
+    navigate('/login'); // Redirect to login page after logout
   };
 
   return (

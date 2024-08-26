@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('authToken') || '');
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    // Check login status if token is present
     if (token) {
       checkLoginStatus();
     } else {
@@ -42,7 +41,6 @@ export const AuthProvider = ({ children }) => {
     setToken(token);
     setIsLoggedIn(true);
     setUserEmail(email);
-    // Optionally store the token in localStorage or sessionStorage
     localStorage.setItem('authToken', token);
   };
 
@@ -54,7 +52,6 @@ export const AuthProvider = ({ children }) => {
       setToken('');
       setIsLoggedIn(false);
       setUserEmail('');
-      // Optionally remove the token from localStorage or sessionStorage
       localStorage.removeItem('authToken');
     } catch (error) {
       console.error('Logout Error:', error);
