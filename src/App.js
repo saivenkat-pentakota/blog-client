@@ -1,3 +1,4 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PostList from './components/PostList';
@@ -26,7 +27,7 @@ const App = () => {
                             <Route path="/settings" element={<div>Settings Page</div>} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<Signup />} />
-                            <Route  path='/user' element={<User/>}/>
+                            <Route path='/user' element={<User/>}/>
                             <Route path="*" element={<div>404 Not Found</div>} />
                         </Routes>
                     </main>

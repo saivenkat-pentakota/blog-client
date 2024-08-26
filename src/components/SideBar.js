@@ -1,5 +1,7 @@
+// src/components/SideBar.js
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from '../AuthContext'; // Import the context
 import homeImg from '../Images/home.png';
 import bookImg from '../Images/book.png';
 import closedBookImg from '../Images/closedBook.png';
@@ -12,6 +14,7 @@ import './SideBar.css';
 
 const SideBar = () => {
   const location = useLocation();
+  const { isLoggedIn, logout } = useAuth(); // Use the context
 
   return (
     <aside className="sidebar">
@@ -57,6 +60,24 @@ const SideBar = () => {
               <img src={profileImg} alt="profileImgIcon"/>
             </Link>
           </li>
+          {isLoggedIn ? (
+            <li>
+              <button onClick={logout} className="btn-logout">LOGOUT</button>
+            </li>
+          ) : (
+            <>
+              <li className={location.pathname === "/login" ? "active" : ""}>
+                <Link to="/login">
+                  <img src={userImg} alt="loginImgIcon"/>
+                </Link>
+              </li>
+              <li className={location.pathname === "/signup" ? "active" : ""}>
+                <Link to="/signup">
+                  <img src={userImg} alt="signupImgIcon"/>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </aside>
