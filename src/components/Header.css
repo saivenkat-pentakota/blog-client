@@ -34,7 +34,8 @@
     background-color:#5736a4;
 }
 
-.header-nav .btn-join{
+.header-nav .btn-join,
+.header-nav .btn-logout{
     margin-left: 2rem;
     padding: 0.5rem 1rem;
     border: none;
@@ -43,6 +44,7 @@
     font-size: 14px;
     background-color:#5736a4;
 }
+
 
 
 /* Responsive Design */

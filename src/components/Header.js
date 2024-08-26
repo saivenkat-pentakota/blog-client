@@ -1,12 +1,12 @@
 // src/components/Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../AuthContext'; // Import the context
+import { useAuth } from '../AuthContext'; 
 import headerLogo from "../Images/The Write Path logo.png";
 import './Header.css';
 
 const Header = () => {
-  const { isLoggedIn, logout } = useAuth(); // Use the context
+  const { isLoggedIn, logout } = useAuth(); 
 
   return (
     <div className='header-container'>
