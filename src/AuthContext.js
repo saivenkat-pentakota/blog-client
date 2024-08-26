@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
         const res = await axios.get('/api/auth/check', {
           headers: { Authorization: `Bearer ${token}` }
         });
+
         if (res.data.isLoggedIn) {
           setIsLoggedIn(true);
           setUserEmail(res.data.email || '');
@@ -24,9 +25,11 @@ export const AuthProvider = ({ children }) => {
       } catch (error) {
         setIsLoggedIn(false);
         setUserEmail('');
+        console.error('Error checking login status:', error);
       }
     };
 
+    // Check login status if token is present
     if (token) {
       checkLoginStatus();
     } else {
@@ -39,6 +42,8 @@ export const AuthProvider = ({ children }) => {
     setToken(token);
     setIsLoggedIn(true);
     setUserEmail(email);
+    // Optionally store the token in localStorage or sessionStorage
+    localStorage.setItem('authToken', token);
   };
 
   const logout = async () => {
@@ -49,6 +54,8 @@ export const AuthProvider = ({ children }) => {
       setToken('');
       setIsLoggedIn(false);
       setUserEmail('');
+      // Optionally remove the token from localStorage or sessionStorage
+      localStorage.removeItem('authToken');
     } catch (error) {
       console.error('Logout Error:', error);
     }
