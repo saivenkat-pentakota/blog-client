@@ -9,33 +9,38 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('authToken') || '');
 
   // Function to check login status
-  const checkLoginStatus = async () => {
-    const token = localStorage.getItem('authToken');
-    console.log('Checking login status with token:', token); // Log token
-
-    if (token) {
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const token = localStorage.getItem('authToken');
+      console.log('Checking login status with token:', token); // Log token
+  
+      if (token) {
         try {
-            const res = await axios.get('/api/auth/check', {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            console.log('Login Status Response:', res.data);
-            if (res.data.isLoggedIn) {
-                setIsLoggedIn(true);
-                setUserEmail(res.data.email || '');
-            } else {
-                setIsLoggedIn(false);
-                setUserEmail('');
-            }
-        } catch (error) {
+          const res = await axios.get('/api/auth/check', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          console.log('Login Status Response:', res.data);
+          if (res.data.isLoggedIn) {
+            setIsLoggedIn(true);
+            setUserEmail(res.data.email || '');
+          } else {
             setIsLoggedIn(false);
             setUserEmail('');
-            console.error('Error checking login status:', error); // Look for detailed error messages
+          }
+        } catch (error) {
+          setIsLoggedIn(false);
+          setUserEmail('');
+          console.error('Error checking login status:', error); // Detailed error logging
         }
-    } else {
+      } else {
         setIsLoggedIn(false);
         setUserEmail('');
-    }
-};
+      }
+    };
+  
+    checkLoginStatus();
+  }, [token]);
+  
 
 
   const login = async (email, password) => {
