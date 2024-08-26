@@ -8,45 +8,49 @@ export const AuthProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState('');
   const [token, setToken] = useState(localStorage.getItem('authToken') || '');
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const storedToken = localStorage.getItem('authToken');
-      console.log('Checking login status with token:', storedToken); // Log token
-      if (storedToken) {
+  // Function to check login status
+  const checkLoginStatus = async () => {
+    const token = localStorage.getItem('authToken');
+    console.log('Checking login status with token:', token); // Log token
+
+    if (token) {
         try {
-          const res = await axios.get('/api/auth/check', {
-            headers: { Authorization: `Bearer ${storedToken}` }
-          });
-          console.log('Login Status Response:', res.data);
-          if (res.data.isLoggedIn) {
-            setIsLoggedIn(true);
-            setUserEmail(res.data.email || '');
-          } else {
+            const res = await axios.get('/api/auth/check', {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            console.log('Login Status Response:', res.data);
+            if (res.data.isLoggedIn) {
+                setIsLoggedIn(true);
+                setUserEmail(res.data.email || '');
+            } else {
+                setIsLoggedIn(false);
+                setUserEmail('');
+            }
+        } catch (error) {
             setIsLoggedIn(false);
             setUserEmail('');
-          }
-        } catch (error) {
-          setIsLoggedIn(false);
-          setUserEmail('');
-          console.error('Error checking login status:', error);
+            console.error('Error checking login status:', error); // Look for detailed error messages
         }
-      } else {
+    } else {
         setIsLoggedIn(false);
         setUserEmail('');
-      }
-    };
+    }
+};
 
-    checkLoginStatus();
-  }, [token]);
 
   const login = async (email, password) => {
     try {
       const response = await axios.post('/api/auth/login', { email, password });
       const { token } = response.data;
+      
       if (token) {
-        setToken(token);
+        // Store the token in localStorage
         localStorage.setItem('authToken', token);
-        console.log('Token stored in localStorage:', localStorage.getItem('authToken')); // Log token
+        console.log('Token stored in localStorage:', localStorage.getItem('authToken')); // Check if token is stored correctly
+
+        // Update state and make additional requests if necessary
+        setToken(token);
+
         const userResponse = await axios.get('/api/auth/user', {
           headers: { Authorization: `Bearer ${token}` }
         });
