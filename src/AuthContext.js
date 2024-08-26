@@ -7,33 +7,44 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
+  const [token, setToken] = useState('');
 
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
         const res = await axios.get('/api/auth/check', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: { Authorization: `Bearer ${token}` }
         });
-        setIsLoggedIn(res.data.isLoggedIn);
-        setUserEmail(res.data.email || '');
+        if (res.data.isLoggedIn) {
+          setIsLoggedIn(true);
+          setUserEmail(res.data.email || '');
+        } else {
+          setIsLoggedIn(false);
+          setUserEmail('');
+        }
       } catch (error) {
         setIsLoggedIn(false);
+        setUserEmail('');
       }
     };
 
-    checkLoginStatus();
-  }, []);
+    if (token) {
+      checkLoginStatus();
+    }
+  }, [token]);
 
   const login = (token, email) => {
-    localStorage.setItem('token', token);
+    setToken(token);
     setIsLoggedIn(true);
     setUserEmail(email);
   };
 
   const logout = async () => {
     try {
-      await axios.post('/api/auth/logout');
-      localStorage.removeItem('token');
+      await axios.post('/api/auth/logout', {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setToken('');
       setIsLoggedIn(false);
       setUserEmail('');
     } catch (error) {

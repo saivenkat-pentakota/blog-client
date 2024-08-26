@@ -1,20 +1,30 @@
+// src/components/Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; // Import the context
 import headerLogo from "../Images/The Write Path logo.png";
 import './Header.css';
 
 const Header = () => {
+  const { isLoggedIn, logout } = useAuth(); // Use the context
+
   return (
     <div className='header-container'>
       <header className="header">
         <img className="header-logo" src={headerLogo} alt='header-logo'/>
         <nav className="header-nav">
-          <Link to="/login">
-            <button className="btn-login">LOGIN</button>
-          </Link>
-          <Link to="/signup">
-            <button className="btn-join">SIGN UP</button>
-          </Link>
+          {isLoggedIn ? (
+            <button onClick={logout} className="btn-logout">LOGOUT</button>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="btn-login">LOGIN</button>
+              </Link>
+              <Link to="/signup">
+                <button className="btn-join">SIGN UP</button>
+              </Link>
+            </>
+          )}
         </nav>
       </header>
     </div>

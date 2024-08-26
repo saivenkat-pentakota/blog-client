@@ -14,7 +14,7 @@ import './SideBar.css';
 
 const SideBar = () => {
   const location = useLocation();
-  const { isLoggedIn, logout } = useAuth(); // Use the context
+  const { isLoggedIn, userEmail } = useAuth(); // Use the context
 
   return (
     <aside className="sidebar">
@@ -60,23 +60,8 @@ const SideBar = () => {
               <img src={profileImg} alt="profileImgIcon"/>
             </Link>
           </li>
-          {isLoggedIn ? (
-            <li>
-              <button onClick={logout} className="btn-logout">LOGOUT</button>
-            </li>
-          ) : (
-            <>
-              <li className={location.pathname === "/login" ? "active" : ""}>
-                <Link to="/login">
-                  <img src={userImg} alt="loginImgIcon"/>
-                </Link>
-              </li>
-              <li className={location.pathname === "/signup" ? "active" : ""}>
-                <Link to="/signup">
-                  <img src={userImg} alt="signupImgIcon"/>
-                </Link>
-              </li>
-            </>
+          {isLoggedIn && (
+            <li className="user-email">{userEmail}</li>
           )}
         </ul>
       </nav>
