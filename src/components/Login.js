@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Import the CSS file
+import './Login.css';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -31,10 +31,10 @@ const Login = () => {
         }
 
         try {
-            // Use environment variable for API URL
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
                 setSuccess('Login successful! Redirecting to homepage...');
+                setIsAuthenticated(true);  // Update the auth state to true
                 setTimeout(() => {
                     navigate('/');  // Navigate to homepage after successful login
                 }, 2000);

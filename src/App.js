@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
@@ -11,10 +11,12 @@ import Header from './components/Header';
 import './App.css'; 
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <Router>
       <div className="app-container">
-        <Header />
+        <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <div className="content-wrapper">
           <SideBar />
           <main className="main-content">
@@ -23,7 +25,7 @@ const App = () => {
               <Route path="/posts/:id" element={<PostDetail />} />
               <Route path="/create" element={<CreatePost />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
               <Route path="/profile" element={<div>Profile Page</div>} />
               <Route path="/settings" element={<div>Settings Page</div>} />
               <Route path="*" element={<div>404 Not Found</div>} />
