@@ -10,7 +10,7 @@ const PostDetail = () => {
 
     useEffect(() => {
         console.log("Post ID:", id);  
-        axios.get(`https:/blog-client-mptr.onrender.com/posts/${id}`)
+        axios.get(`https://blog-client-mptr.onrender.com/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
     }, [id]);

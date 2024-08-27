@@ -30,7 +30,7 @@ const CreatePost = () => {
 
         setErrorMessage('');
 
-        axios.post('https:/blog-client-mptr.onrender.com/posts', formData, {
+        axios.post('https://blog-client-mptr.onrender.com/posts', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

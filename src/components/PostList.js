@@ -9,10 +9,10 @@ const PostList = () => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        axios.get('https:/blog-client-mptr.onrender.com/posts') 
+        axios.get('https://blog-client-mptr.onrender.com/posts')
             .then(response => setPosts(response.data))
             .catch(error => {
-                console.error('Error fetching posts:', error);
+                console.error('Error fetching posts:', error.response || error.message || error);
                 setError('Failed to load posts');
             });
     }, []);
@@ -45,7 +45,7 @@ const PostList = () => {
                     <div key={post.id} className="post"> {/* Use post.id for key */}
                         {post.imageFile && (
                             <img 
-                                src={`https:/blog-client-mptr.onrender.com/uploads/${post.imageFile}`} 
+                                src={`https://blog-client-mptr.onrender.com/uploads/${post.imageFile}`} 
                                 alt={post.title} 
                                 className="post-image" 
                             />
