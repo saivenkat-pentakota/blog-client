@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import homeImg from '../Images/home.png';
 import bookImg from '../Images/book.png';
 import closedBookImg from '../Images/closedBook.png';
@@ -11,7 +11,7 @@ import profileImg from '../Images/profile.png';
 import './SideBar.css';
 
 const SideBar = () => {
-
+  const location = useLocation();  // Use the useLocation hook to get the current path
 
   return (
     <aside className="sidebar">
@@ -57,7 +57,6 @@ const SideBar = () => {
               <img src={profileImg} alt="profileImgIcon"/>
             </Link>
           </li>
-    
         </ul>
       </nav>
     </aside>
