@@ -19,7 +19,7 @@ const App = () => {
       <div className="app-container">
         <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <div className="content-wrapper">
-          <SideBar isAuthenticated={isAuthenticated} /> {/* Pass the isAuthenticated state */}
+          <SideBar isAuthenticated={isAuthenticated} /> 
           <main className="main-content">
             <Routes>
               <Route path="/" element={<PostList />} />

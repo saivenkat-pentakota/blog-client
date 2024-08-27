@@ -5,7 +5,6 @@ import bookImg from '../Images/book.png';
 import closedBookImg from '../Images/closedBook.png';
 import fileImg from '../Images/file.png';
 import writingImg from '../Images/writing.png';
-import userImg from '../Images/user.png';
 import markImg from '../Images/mark.png';
 import profileImg from '../Images/profile.png';
 import './SideBar.css';
@@ -42,11 +41,7 @@ const SideBar = ({ isAuthenticated }) => {
               <img src={writingImg} alt="writingImgIcon"/>
             </Link>
           </li>
-          <li className={location.pathname === "/user" ? "active" : ""}>
-            <Link to="/user">
-              <img src={userImg} alt="userImgIcon"/>
-            </Link>
-          </li>
+          
           <li className={location.pathname === "/mark" ? "active" : ""}>
             <Link to="/mark">
               <img src={markImg} alt="markImgIcon"/>
