@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './CreatePost.css';
 
-const CreatePost = () => {
+const CreatePost = ({ isAuthenticated }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate(); // Initialize navigate
 
     const handleFileChange = (e) => {
         setImageFile(e.target.files[0]);
@@ -40,11 +42,18 @@ const CreatePost = () => {
             setTitle('');
             setContent('');
             setImageFile(null);
+
+            // Navigate to the /posts page after successful post creation
+            navigate('/posts');
         } catch (error) {
             console.error('Error creating post:', error.response || error.message || error);
             setErrorMessage('Failed to create post. Please try again.');
         }
     };
+
+    if (!isAuthenticated) {
+        return <p className="error-message">Please Signup or Login to create a post.</p>;
+    }
 
     return (
         <div className="create-post-form">

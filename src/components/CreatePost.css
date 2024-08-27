@@ -48,21 +48,33 @@ button:hover {
 
 /* Validation Messages */
 .error-message {
-    color: #dc3545;
+    color: #dc3545; /* Red color for error messages */
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    background-color: #f8d7da; /* Light red background for error messages */
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb; /* Border matching the error color */
 }
 
 .success-message {
-    color: #28a745;
+    color: #28a745; /* Green color for success messages */
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    background-color: #d4edda; /* Light green background for success messages */
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #c3e6cb; /* Border matching the success color */
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     .create-post-form {
         padding: 0.5rem;
+    }
+
+    button {
+        width: 100%; /* Ensure the button takes full width on smaller screens */
     }
 }
 
@@ -74,5 +86,11 @@ button:hover {
 
     button {
         padding: 0.5rem 1rem;
+    }
+
+    .error-message,
+    .success-message {
+        font-size: 0.85rem; /* Slightly smaller font size on very small screens */
+        padding: 0.4rem;
     }
 }

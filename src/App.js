@@ -23,9 +23,9 @@ const App = () => {
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Signup />} />
-              <Route path="/posts" element={<PostList/>}/>
+              <Route path="/posts" element={<PostList isAuthenticated={isAuthenticated}/>}/>
               <Route path="/posts/:id" element={<PostDetail />} />
-              <Route path="/create" element={<CreatePost />} />
+              <Route path="/create" element={<CreatePost  isAuthenticated={isAuthenticated} />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
               <Route path="/profile" element={isAuthenticated ? <ProfilePage /> : <div>Please log in</div>} />

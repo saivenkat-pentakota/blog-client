@@ -3,13 +3,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './PostList.css';
 
-const PostList = () => {
+const PostList = ({ isAuthenticated }) => {
     const [posts, setPosts] = useState([]);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchPosts = async () => {
+            if (!isAuthenticated) {
+                return;
+            }
+
             const apiUrl = process.env.REACT_APP_API_URL;
             console.log(`API URL: ${apiUrl}`);  // Debugging line
 
@@ -28,11 +32,15 @@ const PostList = () => {
         };
 
         fetchPosts();
-    }, []);
+    }, [isAuthenticated]);
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
     };
+
+    if (!isAuthenticated) {
+        return <p className="error-message">Please Signup or Login to see the data in Home Page.</p>;
+    }
 
     return (
         <div className="PostListContainer">
