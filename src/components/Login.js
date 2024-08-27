@@ -38,7 +38,7 @@ const Login = ({ setIsAuthenticated }) => {
                 Cookies.set('userEmail', email, { expires: 7 }); // Store email in cookies
                 setIsAuthenticated(true); // Update the auth state to true
                 setTimeout(() => {
-                    navigate('/'); // Navigate to homepage after successful login
+                    navigate('/posts'); // Navigate to homepage after successful login
                 }, 2000);
             }
         } catch (err) {
