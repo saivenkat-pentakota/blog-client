@@ -22,6 +22,21 @@
     margin-bottom: 15px;
 }
 
+/* Styling for first and last name side by side */
+.signup-form .form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-form .form-row .form-group {
+    flex: 1;
+    margin-right: 10px; /* Add space between the two inputs */
+}
+
+.signup-form .form-row .form-group:last-child {
+    margin-right: 0; /* Remove right margin for the last item */
+}
+
 .signup-form .form-group label {
     display: block;
     font-size: 14px;
@@ -30,7 +45,7 @@
 }
 
 .signup-form .form-group input {
-    width: 300px;
+    width: 100%; /* Adjusted width for side-by-side layout */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -38,7 +53,7 @@
 }
 
 .signup-button {
-    width: 320px;
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     color: #fff;
@@ -79,6 +94,10 @@
     .signup-container {
         padding: 15px;
         margin: 20px;
+    }
+
+    .signup-form .form-row {
+        flex-direction: column; /* Stack the fields vertically on small screens */
     }
 
     .signup-form .form-group input {
