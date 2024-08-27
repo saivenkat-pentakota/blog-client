@@ -20,7 +20,7 @@ const PostDetail = () => {
 
     return (
         <div className='PostDetailContainer'>
-            <div onClick={() => navigate('/')} className="navigate">←</div>
+            <div onClick={() => navigate('/posts')} className="navigate">←</div>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
