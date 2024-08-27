@@ -16,8 +16,8 @@ const SideBar = ({ isAuthenticated }) => {
     <aside className="sidebar">
       <nav>
         <ul>
-          <li className={location.pathname === "/" ? "active" : ""}>
-            <Link to="/">
+          <li className={location.pathname === "/post" ? "active" : ""}>
+            <Link to="/posts">
               <img className="home-img" src={homeImg} alt="homeImgIcon"/>
             </Link>
           </li>

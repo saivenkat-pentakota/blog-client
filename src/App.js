@@ -22,7 +22,8 @@ const App = () => {
           <SideBar isAuthenticated={isAuthenticated} /> 
           <main className="main-content">
             <Routes>
-              <Route path="/" element={<PostList />} />
+              <Route path="/" element={<Signup />} />
+              <Route path="/posts" element={<PostList/>}/>
               <Route path="/posts/:id" element={<PostDetail />} />
               <Route path="/create" element={<CreatePost />} />
               <Route path="/signup" element={<Signup />} />
