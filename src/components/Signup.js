@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "./Signup.css"; // Import the CSS file
+import { useNavigate,Link } from "react-router-dom";
+import "./Signup.css";
 
 const Signup = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -51,10 +47,6 @@ const Signup = () => {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/auth/signup`,
         {
-          firstName,
-          lastName,
-          username,
-          phone,
           email,
           password,
         }
@@ -63,7 +55,7 @@ const Signup = () => {
       if (res.status === 201) {
         setSuccess("Signup successful! Redirecting to login page...");
         setTimeout(() => {
-          navigate("/login"); // Navigate to login page after successful signup
+          navigate("/login"); 
         }, 2000);
       }
     } catch (err) {
@@ -76,45 +68,7 @@ const Signup = () => {
       <h2>Sign Up</h2>
       {error && <div className="popup error">{error}</div>}
       {success && <div className="popup success">{success}</div>}
-      <form onSubmit={handleSignup} className="signup-form">
-        <div className="form-row">
-          <div className="form-group">
-            <label>First Name:</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Last Name:</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Phone Number:</label>
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-        </div>
+      <form onSubmit={handleSignup} className="signup-form"> 
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -145,6 +99,9 @@ const Signup = () => {
         <button type="submit" className="signup-button">
           Sign Up
         </button>
+        <p>
+        Already have an account? <Link to="/login">Log in</Link>
+      </p>
       </form>
     </div>
   );

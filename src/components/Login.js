@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import js-cookie
 import './Login.css';
 
@@ -73,6 +73,9 @@ const Login = ({ setIsAuthenticated }) => {
                     />
                 </div>
                 <button type="submit" className="login-button">Login</button>
+                <p>
+        Don't have an account? <Link to="/signup">Sign up</Link>
+      </p>
             </form>
         </div>
     );

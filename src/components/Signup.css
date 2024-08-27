@@ -6,9 +6,6 @@
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
 }
 
 .signup-container h2 {
@@ -22,21 +19,6 @@
     margin-bottom: 15px;
 }
 
-/* Styling for first and last name side by side */
-.signup-form .form-row {
-    display: flex;
-    justify-content: space-between;
-}
-
-.signup-form .form-row .form-group {
-    flex: 1;
-    margin-right: 10px; /* Add space between the two inputs */
-}
-
-.signup-form .form-row .form-group:last-child {
-    margin-right: 0; /* Remove right margin for the last item */
-}
-
 .signup-form .form-group label {
     display: block;
     font-size: 14px;
@@ -45,7 +27,7 @@
 }
 
 .signup-form .form-group input {
-    width: 100%; /* Adjusted width for side-by-side layout */
+    width: 300px;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -53,7 +35,7 @@
 }
 
 .signup-button {
-    width: 100%;
+    width: 320px;
     padding: 10px;
     font-size: 16px;
     color: #fff;
@@ -67,6 +49,26 @@
 .signup-button:hover {
     background-color: #0056b3;
 }
+
+/* Style for the text and link at the bottom of the login form */
+.signup-container p {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Style for the link in the login form */
+.signup-container p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container p a:hover {
+    text-decoration: underline;
+}
+
 
 /* Popup notifications */
 .popup {
@@ -94,10 +96,6 @@
     .signup-container {
         padding: 15px;
         margin: 20px;
-    }
-
-    .signup-form .form-row {
-        flex-direction: column; /* Stack the fields vertically on small screens */
     }
 
     .signup-form .form-group input {
