@@ -8,7 +8,6 @@
     align-items: center;
     padding: 1rem;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for better separation */
 }
 
 .header-logo {
@@ -23,7 +22,7 @@
 
 .header-nav .btn-login,
 .header-nav .btn-join,
-.header-nav .btn-logout { /* Added class for logout button */
+.header-nav .btn-logout { 
     margin-left: 1rem;
     padding: 0.5rem 1rem;
     border: none;
@@ -35,18 +34,18 @@
 }
 
 .header-nav .btn-login {
-    background-color: #00e1ff; /* Color for login button */
+    background-color: #00e1ff;
     color: #fff;
 }
 
 .header-nav .btn-join {
-    background-color: #007bff; /* Color for sign-up button */
+    background-color: #007bff;
     color: #fff;
     margin-left: 2rem !important;
 }
 
 .header-nav .btn-logout {
-    background-color: #dc3545; /* Red color for logout button */
+    background-color: #dc3545;
     color: #fff;
 }
 
@@ -58,19 +57,19 @@
 }
 
 .header-nav .btn-logout:hover {
-    background-color: #c82333; /* Darker red on hover */
+    background-color: #c82333;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-logo {
-        width: 150px; /* Adjust size for smaller screens */
+        width: 150px; 
     }
 
     .header-nav {
-        flex-direction: column; /* Stack buttons vertically on smaller screens */
-        align-items: flex-end; /* Align buttons to the right */
-        margin-top: 1rem; /* Add some space above the buttons */
+        flex-direction: column; 
+        align-items: flex-end; 
+        margin-top: 1rem; 
     }
 
     .header-nav .btn-login,
@@ -78,6 +77,6 @@
     .header-nav .btn-logout {
         margin-left: 0;
         margin-top: 0.5rem;
-        font-size: 12px; /* Adjust font size for smaller screens */
+        font-size: 12px;
     }
 }

@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie'; // Import js-cookie for handling cookies
-import headerLogo from "../Images/The Write Path logo.png";
+import Cookies from 'js-cookie'; 
 import './Header.css';
 
 const Header = ({ isAuthenticated, setIsAuthenticated }) => {
     const handleLogout = () => {
-        Cookies.remove('userEmail'); // Remove user email from cookies
-        setIsAuthenticated(false); // Update the auth state to false
+        Cookies.remove('userEmail'); 
+        setIsAuthenticated(false); 
     };
 
     return (
         <div className='header-container'>
             <header className="header">
-                <img className="header-logo" src={headerLogo} alt='header-logo'/>
                 <nav className="header-nav">
                     {!isAuthenticated ? (
                         <>
