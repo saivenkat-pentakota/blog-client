@@ -13,7 +13,7 @@ const CreatePost = () => {
         setImageFile(e.target.files[0]);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!title || !content) {
@@ -30,21 +30,20 @@ const CreatePost = () => {
 
         setErrorMessage('');
 
-        axios.post('https://blog-client-mptr.onrender.com/posts', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        })
-        .then(response => {
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
             setSuccessMessage('Post created successfully!');
             setTitle('');
             setContent('');
             setImageFile(null);
-        })
-        .catch(error => {
-            console.error(error);
+        } catch (error) {
+            console.error('Error creating post:', error.response || error.message || error);
             setErrorMessage('Failed to create post. Please try again.');
-        });
+        }
     };
 
     return (

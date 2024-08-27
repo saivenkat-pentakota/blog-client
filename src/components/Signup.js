@@ -43,11 +43,12 @@ const Signup = () => {
         }
 
         try {
-            const res = await axios.post('https://blog-client-mptr.onrender.com/auth/signup', { email, password });
+            // Update the URL to point to your local backend server
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, { email, password });
             if (res.status === 201) {
-                setSuccess('Signup successful! Redirecting to homepage...');
+                setSuccess('Signup successful! Redirecting to login page...');
                 setTimeout(() => {
-                    navigate('/');  // Navigate to homepage after successful signup
+                    navigate('/login');  // Navigate to login page after successful signup
                 }, 2000);
             }
         } catch (err) {

@@ -9,8 +9,9 @@ const PostDetail = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("Post ID:", id);  
-        axios.get(`https://blog-client-mptr.onrender.com/posts/${id}`)
+        console.log("Post ID:", id);
+        // Use environment variable for API URL
+        axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
     }, [id]);
@@ -23,7 +24,11 @@ const PostDetail = () => {
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
-                <img src={`https:/blog-client-mptr.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
+                <img 
+                    src={`${process.env.REACT_APP_API_URL}/uploads/${post.imageFile}`} 
+                    alt={post.title} 
+                    className="post-image" 
+                />
             )}
         </div>
     );

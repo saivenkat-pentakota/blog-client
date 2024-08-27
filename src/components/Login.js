@@ -31,7 +31,8 @@ const Login = () => {
         }
 
         try {
-            const res = await axios.post('https://blog-client-mptr.onrender.com/auth/login', { email, password });
+            // Use environment variable for API URL
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
                 setSuccess('Login successful! Redirecting to homepage...');
                 setTimeout(() => {

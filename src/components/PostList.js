@@ -9,12 +9,25 @@ const PostList = () => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        axios.get('https://blog-client-mptr.onrender.com/posts')
-            .then(response => setPosts(response.data))
-            .catch(error => {
+        const fetchPosts = async () => {
+            const apiUrl = process.env.REACT_APP_API_URL;
+            console.log(`API URL: ${apiUrl}`);  // Debugging line
+
+            if (!apiUrl) {
+                setError('API URL is not defined');
+                return;
+            }
+
+            try {
+                const response = await axios.get(`${apiUrl}/posts`);
+                setPosts(response.data);
+            } catch (error) {
                 console.error('Error fetching posts:', error.response || error.message || error);
                 setError('Failed to load posts');
-            });
+            }
+        };
+
+        fetchPosts();
     }, []);
 
     const handleTitleClick = (id) => {
@@ -29,7 +42,7 @@ const PostList = () => {
                 <ul className="titles-list">
                     {posts.map(post => (
                         <li
-                            key={post.id}  // Use post.id for key
+                            key={post.id}
                             onClick={() => handleTitleClick(post.id)}
                             className={`title-item ${selectedPostId === post.id ? 'active' : ''}`}
                         >
@@ -42,10 +55,10 @@ const PostList = () => {
             <div className="posts-section">
                 <h3>All Posts</h3>
                 {posts.map(post => (
-                    <div key={post.id} className="post"> {/* Use post.id for key */}
+                    <div key={post.id} className="post">
                         {post.imageFile && (
                             <img 
-                                src={`https://blog-client-mptr.onrender.com/uploads/${post.imageFile}`} 
+                                src={`${process.env.REACT_APP_API_URL}/uploads/${post.imageFile}`} 
                                 alt={post.title} 
                                 className="post-image" 
                             />
