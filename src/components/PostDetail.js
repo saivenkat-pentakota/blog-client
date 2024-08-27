@@ -10,7 +10,7 @@ const PostDetail = () => {
 
     useEffect(() => {
         console.log("Post ID:", id);  
-        axios.get(`https://blog-app-c2bf.onrender.com/posts/${id}`)
+        axios.get(`https://blog-client-mptr.onrender.com/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
     }, [id]);
@@ -23,7 +23,7 @@ const PostDetail = () => {
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
-                <img src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
+                <img src={`https://blog-client-mptr.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
             )}
         </div>
     );

@@ -1,19 +1,11 @@
-// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom/client'; // Use 'react-dom/client' for React 18
 import App from './App';
-import { AuthProvider } from './AuthContext'; // Import AuthProvider
-import reportWebVitals from './reportWebVitals';
+import './index.css'; // Your global styles
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')); // Create root element
 root.render(
   <React.StrictMode>
-    <AuthProvider>  {/* Wrap App with AuthProvider */}
-      <App />
-    </AuthProvider>
+    <App />
   </React.StrictMode>
 );
-
-
-reportWebVitals();

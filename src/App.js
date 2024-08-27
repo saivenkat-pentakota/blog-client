@@ -1,43 +1,41 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
 import CreatePost from './components/CreatePost';
-import './App.css'; 
+import Signup from './components/Signup';
+import Login from './components/Login';
 import SideBar from './components/SideBar';
 import Header from './components/Header';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import User from './components/User';
+
+import './App.css'; 
 
 const App = () => {
-    return (
-        <Router>
-            <div className="app-container">
-                <Header/>
-                <div className="content-wrapper">
-                    <SideBar/>
-                    <main className="main-content">
-                        <Routes>
-                            <Route path="/" element={<PostList />} />
-                            <Route path="/posts/:id" element={<PostDetail />} />
-                            <Route path="/create" element={<CreatePost />} />
-                            <Route path="/profile" element={<div>Profile Page</div>} />
-                            <Route path="/settings" element={<div>Settings Page</div>} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signup" element={<Signup />} />
-                            <Route path='/user' element={<User/>}/>
-                            <Route path="*" element={<div>404 Not Found</div>} />
-                        </Routes>
-                    </main>
-                </div>
-                <footer>
-                    <p>&copy; 2024 My Blog</p>
-                </footer>
-            </div>
-        </Router>
-    );
+  return (
+    <Router>
+      <div className="app-container">
+        <Header />
+        <div className="content-wrapper">
+          <SideBar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<PostList />} />
+              <Route path="/posts/:id" element={<PostDetail />} />
+              <Route path="/create" element={<CreatePost />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<div>Profile Page</div>} />
+              <Route path="/settings" element={<div>Settings Page</div>} />
+              <Route path="*" element={<div>404 Not Found</div>} />
+            </Routes>
+          </main>
+        </div>
+        <footer>
+          <p>&copy; 2024 My Blog</p>
+        </footer>
+      </div>
+    </Router>
+  );
 };
 
 export default App;

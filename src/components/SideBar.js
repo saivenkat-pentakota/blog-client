@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useAuth } from '../AuthContext'; 
+import { Link } from "react-router-dom";
 import homeImg from '../Images/home.png';
 import bookImg from '../Images/book.png';
 import closedBookImg from '../Images/closedBook.png';
@@ -12,8 +11,7 @@ import profileImg from '../Images/profile.png';
 import './SideBar.css';
 
 const SideBar = () => {
-  const location = useLocation();
-  const { isLoggedIn, userEmail } = useAuth(); 
+
 
   return (
     <aside className="sidebar">
@@ -59,9 +57,7 @@ const SideBar = () => {
               <img src={profileImg} alt="profileImgIcon"/>
             </Link>
           </li>
-          {isLoggedIn && (
-            <li className="user-email">{userEmail}</li>
-          )}
+    
         </ul>
       </nav>
     </aside>

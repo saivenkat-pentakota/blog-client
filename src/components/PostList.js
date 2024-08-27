@@ -9,7 +9,7 @@ const PostList = () => {
     const [selectedPostId, setSelectedPostId] = useState(null);
 
     useEffect(() => {
-        axios.get('https://blog-app-c2bf.onrender.com/posts')
+        axios.get('https://blog-client-mptr.onrender.com/posts')
             .then(response => setPosts(response.data))
             .catch(error => console.error(error));
     }, []);
@@ -40,7 +40,7 @@ const PostList = () => {
                 {posts.map(post => (
                     <div key={uuidv4()} className="post">
                         {post.imageFile && (
-                            <img src={`https://blog-app-c2bf.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
+                            <img src={`https://blog-client-mptr.onrender.com/uploads/${post.imageFile}`} alt={post.title} className="post-image" />
                         )}
                         <h3>{post.title}</h3>
                         <p>{post.content.substring(0, 200)}...</p>
