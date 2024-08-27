@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import js-cookie
 import './Login.css';
 
 const Login = ({ setIsAuthenticated }) => {
@@ -34,9 +35,10 @@ const Login = ({ setIsAuthenticated }) => {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
                 setSuccess('Login successful! Redirecting to homepage...');
-                setIsAuthenticated(true);  // Update the auth state to true
+                Cookies.set('userEmail', email, { expires: 7 }); // Store email in cookies
+                setIsAuthenticated(true); // Update the auth state to true
                 setTimeout(() => {
-                    navigate('/');  // Navigate to homepage after successful login
+                    navigate('/'); // Navigate to homepage after successful login
                 }, 2000);
             }
         } catch (err) {

@@ -10,7 +10,7 @@ import markImg from '../Images/mark.png';
 import profileImg from '../Images/profile.png';
 import './SideBar.css';
 
-const SideBar = () => {
+const SideBar = ({ isAuthenticated }) => {
   const location = useLocation();  // Use the useLocation hook to get the current path
 
   return (
@@ -52,11 +52,13 @@ const SideBar = () => {
               <img src={markImg} alt="markImgIcon"/>
             </Link>
           </li>
-          <li className={location.pathname === "/profile" ? "active" : ""}>
-            <Link to="/profile">
-              <img src={profileImg} alt="profileImgIcon"/>
-            </Link>
-          </li>
+          {isAuthenticated && (
+            <li className={location.pathname === "/profile" ? "active" : ""}>
+              <Link to="/profile">
+                <img src={profileImg} alt="profileImgIcon"/>
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </aside>
