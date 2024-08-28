@@ -18,6 +18,10 @@
     display: none;
     cursor: pointer;
     font-size: 24px;
+    /* Ensure the hamburger menu is fixed to the right on mobile screens */
+    position: absolute;
+    right: 1rem; /* Adjust as needed */
+    top: 1rem; /* Adjust as needed */
 }
 
 /* Show hamburger menu on mobile screens */

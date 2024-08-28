@@ -11,7 +11,7 @@
 /* Adjust for the sidebar when it's open on mobile screens */
 .content-wrapper.overlay {
   filter: blur(4px);
-  margin-left: 250px; /* Adjust based on your sidebar width */
+  margin-left: 200px; /* Adjust based on mobile sidebar width */
 }
 
 /* Position and style the overlay for the sidebar on mobile */
