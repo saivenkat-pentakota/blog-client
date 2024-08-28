@@ -23,15 +23,17 @@
 
 .sidebar nav ul li {
   margin: 1rem 0;
+  display: flex;
+  align-items: center; 
 }
 
 .sidebar nav ul li a {
   display: flex;
   align-items: center;
-  padding: 0.5rem;
-  border-radius: 4px;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 4px;
 }
 
 .sidebar nav ul li.active a,
@@ -48,14 +50,22 @@
 .sidebar img {
   width: 24px; 
   height: 24px;
+  margin-right: 0.5rem; 
+}
+
+/* Add spacing for p tags */
+.sidebar nav ul li p {
+  margin: 0; 
+  font-size: 14px;
+  color: #333; 
 }
 
 /* Close button */
 .close-btn {
-  display: none;
   font-size: 2rem;
   cursor: pointer;
   position: absolute;
+  padding: 10px;
   top: 10px;
   right: 10px;
 }

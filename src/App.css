@@ -36,7 +36,7 @@ footer {
   .content-wrapper {
     padding-top: 60px;
     flex-direction: column; 
-    margin-left: 0; /* Remove left margin for mobile */
+    margin-left: 0; 
   }
 
   .main-content {

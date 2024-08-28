@@ -21,16 +21,19 @@ const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
             <Link to="/posts">
               <img className="home-img" src={homeImg} alt="homeImgIcon"/>
             </Link>
+            <p>Home</p>
           </li>
           <li className={location.pathname === "/create" ? "active" : ""}>
             <Link to="/create">
               <img src={bookImg} alt="bookImgIcon"/>
             </Link>
+            <p>Create Post</p>
           </li>
           <li className={location.pathname === "/bookdetails" ? "active" : ""}>
             <Link to="/bookdetails">
               <img src={closedBookImg} alt="bookdetailsImgIcon"/>
             </Link>
+            <p>My Posts</p>
           </li>
           <li className={location.pathname === "/file" ? "active" : ""}>
             <Link to="/file">
@@ -52,6 +55,7 @@ const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
               <Link to="/profile">
                 <img src={profileImg} alt="profileImgIcon"/>
               </Link>
+              <p>Profile</p>
             </li>
           )}
         </ul>
