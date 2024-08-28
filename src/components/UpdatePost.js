@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './UpdatePost.css';
 
 const UpdatePost = ({ isAuthenticated }) => {
-    const { id } = useParams(); // Get post ID from URL params
+    const { id } = useParams();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageFile, setImageFile] = useState(null);
@@ -13,7 +13,6 @@ const UpdatePost = ({ isAuthenticated }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch the existing post data by ID
         const fetchPost = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`);
@@ -52,11 +51,12 @@ const UpdatePost = ({ isAuthenticated }) => {
         setErrorMessage('');
 
         try {
-            await axios.put(`${process.env.REACT_APP_API_URL}/posts/${id}`, formData, {
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/posts/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+            console.log('Update response:', response.data);
             setSuccessMessage('Post updated successfully!');
             navigate('/posts');
         } catch (error) {

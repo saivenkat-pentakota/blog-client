@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import homeImg from '../Images/home.png';
 import bookImg from '../Images/book.png';
-import closedBookImg from '../Images/closedBook.png';
 import fileImg from '../Images/file.png';
 import writingImg from '../Images/writing.png';
 import markImg from '../Images/mark.png';
@@ -25,11 +24,6 @@ const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
           <li className={location.pathname === "/create" ? "active" : ""}>
             <Link to="/create">
               <img src={bookImg} alt="bookImgIcon"/>
-            </Link>
-          </li>
-          <li className={location.pathname === "/update-post" ? "active" : ""}>
-            <Link to="/update-post">
-              <img src={closedBookImg} alt="updatePostImgIcon"/>
             </Link>
           </li>
           <li className={location.pathname === "/file" ? "active" : ""}>
