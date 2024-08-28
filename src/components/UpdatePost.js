@@ -58,7 +58,7 @@ const UpdatePost = ({ isAuthenticated }) => {
             });
             console.log('Update response:', response.data);
             setSuccessMessage('Post updated successfully!');
-            navigate('/posts');
+            navigate(`/posts/${id}`);
         } catch (error) {
             console.error('Error updating post:', error.response || error.message || error);
             setErrorMessage('Failed to update post. Please try again.');
@@ -72,7 +72,7 @@ const UpdatePost = ({ isAuthenticated }) => {
     return (
         <div className="update-post-form">
             <form onSubmit={handleSubmit}>
-            <div onClick={() => navigate('/post-details')} className="navigate">←</div>
+                <div onClick={() => navigate(`/posts/${id}`)} className="navigate">←</div>
                 <div>
                     <label>Title:</label>
                     <input 
