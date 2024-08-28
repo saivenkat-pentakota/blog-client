@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './PostDetail.css';
+import editImg from '../Images/edit.png';
+import deleteImg from '../Images/delete.png';
 
 const PostDetail = () => {
     const { id } = useParams();
@@ -33,8 +35,18 @@ const PostDetail = () => {
             <div className='button-container'>
                 <div onClick={() => navigate('/posts')} className="navigate">←</div>
                 <div className='action-buttons'>
-                    <button onClick={handleEditClick} className="edit-button">Edit</button>
-                    <button onClick={handleDeleteClick} className="delete-button">Delete</button>
+                    <img 
+                        src={editImg} 
+                        alt='Edit' 
+                        className='action-image edit-image' 
+                        onClick={handleEditClick} 
+                    />
+                    <img 
+                        src={deleteImg} 
+                        alt='Delete' 
+                        className='action-image delete-image' 
+                        onClick={handleDeleteClick} 
+                    />
                 </div>
             </div>
             <h2>{post.title}</h2>
