@@ -9,6 +9,7 @@
   z-index: 1000;
   left: 0;
   transform: translateX(-100%);
+  width: auto; 
 }
 
 .sidebar.open {
@@ -24,7 +25,7 @@
 .sidebar nav ul li {
   margin: 1rem 0;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .sidebar nav ul li a {
@@ -38,8 +39,8 @@
 
 .sidebar nav ul li.active a,
 .sidebar nav ul li a:hover {
-  background-color: #6947BF; 
-  padding: 0.5rem 1rem; 
+  background-color: #6947BF;
+  padding: 0.5rem 1rem;
 }
 
 .sidebar nav ul li.active img,
@@ -48,9 +49,9 @@
 }
 
 .sidebar img {
-  width: 24px; 
+  width: 24px;
   height: 24px;
-  margin-right: 0.5rem; 
+  margin-right: 0.5rem;
 }
 
 /* Close button */
@@ -67,19 +68,21 @@
 @media (min-width: 769px) {
   .sidebar {
     transform: translateX(0);
+    width: auto; 
   }
 
   .close-btn {
-    display: none; 
+    display: none;
   }
 }
 
-/* Show close button and hide sidebar initially on mobile */
+/* Show close button and restrict sidebar width on mobile */
 @media (max-width: 768px) {
   .close-btn {
     display: block;
   }
-  .sidebar{
-    width: 120px;
+
+  .sidebar {
+    width: 120px; 
   }
 }
