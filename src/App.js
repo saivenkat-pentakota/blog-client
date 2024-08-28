@@ -10,6 +10,7 @@ import Header from './components/Header';
 import ProfilePage from './components/ProfilePage';
 
 import './App.css'; 
+import UpdatePost from './components/UpdatePost';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,6 +41,7 @@ const App = () => {
                   <Route path="/posts" element={<PostList isAuthenticated={isAuthenticated} />}/>
                   <Route path="/posts/:id" element={<PostDetail />} />
                   <Route path="/create" element={<CreatePost isAuthenticated={isAuthenticated} />} />
+                  <Route path="/update-post/:id" element={<UpdatePost isAuthenticated={isAuthenticated} />} />
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/settings" element={<div>Settings Page</div>} />
                   <Route path="*" element={<Navigate to="/posts" />} />

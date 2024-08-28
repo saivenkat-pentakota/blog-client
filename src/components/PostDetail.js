@@ -18,6 +18,10 @@ const PostDetail = () => {
 
     if (!post) return <div>Loading...</div>;
 
+    const handleEditClick = () => {
+        navigate(`/update-post/${id}`);
+    };
+
     return (
         <div className='PostDetailContainer'>
             <div onClick={() => navigate('/posts')} className="navigate">←</div>
@@ -30,6 +34,7 @@ const PostDetail = () => {
                     className="post-image" 
                 />
             )}
+            <button onClick={handleEditClick} className="edit-button">Edit</button>
         </div>
     );
 };
