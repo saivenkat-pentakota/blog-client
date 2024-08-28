@@ -23,7 +23,7 @@ const PostDetail = () => {
 
     return (
         <div className='PostDetailContainer'>
-            <div className='header'>
+            <div className='button-container'>
                 <div onClick={() => navigate('/posts')} className="navigate">←</div>
                 <button onClick={handleEditClick} className="edit-button">Edit</button>
             </div>

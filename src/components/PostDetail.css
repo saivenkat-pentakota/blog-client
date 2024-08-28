@@ -9,24 +9,27 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.header {
-    width: 100%;
+.button-container {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     margin-bottom: 1rem;
 }
 
-.navigate {
+.navigate, .edit-button {
     background: none;
     border: none;
     color: #6947BF;
-    font-size: 2rem;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
+    font-size: 1.5rem;
+}
+
+.navigate {
+    color: #6947BF;
+    font-size: 2rem;
 }
 
 .navigate:hover {
@@ -41,7 +44,6 @@
     color: #fff;
     cursor: pointer;
     font-size: 1rem;
-    display: inline-block;
 }
 
 .edit-button:hover {
@@ -76,9 +78,13 @@ p {
         padding: 1rem;
     }
 
-    .header {
+    .button-container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+    }
+
+    .navigate {
+        margin-bottom: 1rem;
     }
 
     h2 {
