@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './PostList.css';
@@ -8,31 +8,31 @@ const PostList = ({ isAuthenticated }) => {
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [error, setError] = useState('');
 
+    const fetchPosts = useCallback(async () => {
+        if (!isAuthenticated) {
+            return;
+        }
+
+        const apiUrl = process.env.REACT_APP_API_URL;
+        console.log(`API URL: ${apiUrl}`);
+
+        if (!apiUrl) {
+            setError('API URL is not defined');
+            return;
+        }
+
+        try {
+            const response = await axios.get(`${apiUrl}/posts`);
+            setPosts(response.data);
+        } catch (error) {
+            console.error('Error fetching posts:', error.response || error.message || error);
+            setError('Failed to load posts');
+        }
+    }, [isAuthenticated]); // Dependency on isAuthenticated
+
     useEffect(() => {
-        const fetchPosts = async () => {
-            if (!isAuthenticated) {
-                return;
-            }
-
-            const apiUrl = process.env.REACT_APP_API_URL;
-            console.log(`API URL: ${apiUrl}`); 
-
-            if (!apiUrl) {
-                setError('API URL is not defined');
-                return;
-            }
-
-            try {
-                const response = await axios.get(`${apiUrl}/posts`);
-                setPosts(response.data);
-            } catch (error) {
-                console.error('Error fetching posts:', error.response || error.message || error);
-                setError('Failed to load posts');
-            }
-        };
-
         fetchPosts();
-    }, [isAuthenticated]);
+    }, [fetchPosts]); // Dependency on fetchPosts
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
