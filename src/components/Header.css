@@ -18,25 +18,17 @@
     display: none;
     cursor: pointer;
     font-size: 24px;
-    /* Ensure the hamburger menu is fixed to the right on mobile screens */
-    position: absolute;
-    right: 1rem; /* Adjust as needed */
-    top: 1rem; /* Adjust as needed */
+    left: 1rem; 
+    top: 1rem; 
 }
 
 /* Show hamburger menu on mobile screens */
 @media (max-width: 768px) {
-    .hamburger-menu {
+    .hamburger-menu ,.header-nav .btn-logout{
         display: block;
     }
 }
 
-/* Hide the logout button on mobile screens */
-@media (max-width: 768px) {
-    .header-nav .btn-logout {
-        display: none;
-    }
-}
 
 .header-nav {
     display: flex;
@@ -45,7 +37,6 @@
 }
 
 .header-nav .btn-logout { 
-    margin-left: auto;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
