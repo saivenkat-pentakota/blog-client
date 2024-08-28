@@ -40,6 +40,7 @@ const App = () => {
                 <Routes>
                   <Route path="/posts" element={<PostList isAuthenticated={isAuthenticated} />}/>
                   <Route path="/posts/:id" element={<PostDetail />} />
+                  <Route path="/post-details" element={<PostDetail />} />
                   <Route path="/create" element={<CreatePost isAuthenticated={isAuthenticated} />} />
                   <Route path='/update-post' element={<UpdatePost/>}/>
                   <Route path="/update-post/:id" element={<UpdatePost isAuthenticated={isAuthenticated} />} />
