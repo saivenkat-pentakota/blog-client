@@ -29,7 +29,7 @@ const App = () => {
               setIsAuthenticated={setIsAuthenticated} 
               toggleSidebar={toggleSidebar} 
             />
-            <div className={`content-wrapper ${isSidebarOpen ? 'overlay' : ''}`}>
+            <div className="content-wrapper"> 
               <SideBar 
                 isAuthenticated={isAuthenticated} 
                 isSidebarOpen={isSidebarOpen} 
