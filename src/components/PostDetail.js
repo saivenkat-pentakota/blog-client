@@ -9,7 +9,6 @@ const PostDetail = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("Post ID:", id);
         axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
@@ -21,11 +20,22 @@ const PostDetail = () => {
         navigate(`/update-post/${id}`);
     };
 
+    const handleDeleteClick = () => {
+        axios.delete(`${process.env.REACT_APP_API_URL}/posts/${id}`)
+            .then(() => {
+                navigate('/posts');
+            })
+            .catch(error => console.error('Error deleting post:', error));
+    };
+
     return (
         <div className='PostDetailContainer'>
             <div className='button-container'>
                 <div onClick={() => navigate('/posts')} className="navigate">←</div>
-                <button onClick={handleEditClick} className="edit-button">Edit</button>
+                <div className='action-buttons'>
+                    <button onClick={handleEditClick} className="edit-button">Edit</button>
+                    <button onClick={handleDeleteClick} className="delete-button">Delete</button>
+                </div>
             </div>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
