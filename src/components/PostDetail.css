@@ -2,12 +2,50 @@
 
 .PostDetailContainer {
     max-width: 700px;
-    margin-left: 25rem;
-    margin-top: 2rem;
+    margin: 2rem auto;
     padding: 2rem;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.navigate {
+    background: none;
+    border: none;
+    color: #6947BF;
+    font-size: 2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navigate:hover {
+    text-decoration: none;
+}
+
+.edit-button {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    background: #28a745;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.edit-button:hover {
+    background: #218838;
 }
 
 h2 {
@@ -32,48 +70,15 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Back button styling */
-.navigate {
-    background: none;
-    border: none;
-    color: #6947BF;
-    font-size: 2rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-    display: inline-flex;
-    align-items: center;
-}
-
-.navigate:hover {
-    text-decoration: none;
-}
-
-.navigate::before {
-    font-size: 2rem;
-    margin-right: 0.5rem;
-}
-
-/* Edit button styling */
-.edit-button {
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 4px;
-    background: #28a745;
-    color: #fff;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 1rem;
-    display: inline-block;
-}
-
-.edit-button:hover {
-    background: #218838;
-}
-
 /* Responsive Styles */
 @media (max-width: 768px) {
     .PostDetailContainer {
-        padding: 0.5rem;
+        padding: 1rem;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     h2 {

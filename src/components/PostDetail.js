@@ -10,7 +10,6 @@ const PostDetail = () => {
 
     useEffect(() => {
         console.log("Post ID:", id);
-        // Use environment variable for API URL
         axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`)
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
@@ -24,7 +23,10 @@ const PostDetail = () => {
 
     return (
         <div className='PostDetailContainer'>
-            <div onClick={() => navigate('/posts')} className="navigate">←</div>
+            <div className='header'>
+                <div onClick={() => navigate('/posts')} className="navigate">←</div>
+                <button onClick={handleEditClick} className="edit-button">Edit</button>
+            </div>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             {post.imageFile && (
@@ -34,7 +36,6 @@ const PostDetail = () => {
                     className="post-image" 
                 />
             )}
-            <button onClick={handleEditClick} className="edit-button">Edit</button>
         </div>
     );
 };
