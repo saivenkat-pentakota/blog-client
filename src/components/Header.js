@@ -16,7 +16,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
                         <span className="hamburger-icon">&#9776;</span>
                     </div>
                     {isAuthenticated && (
-                        <button className="btn-logout" onClick={handleLogout}>LOGOUT</button>
+                        <button className="btn-logout" onClick={handleLogout}>logout</button>
                     )}
                 </nav>
             </header>
