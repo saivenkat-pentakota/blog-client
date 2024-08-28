@@ -53,19 +53,12 @@
   margin-right: 0.5rem; 
 }
 
-/* Add spacing for p tags */
-.sidebar nav ul li p {
-  margin: 0; 
-  font-size: 14px;
-  color: #333; 
-}
-
 /* Close button */
 .close-btn {
   font-size: 2rem;
   cursor: pointer;
   position: absolute;
-  padding: 10px;
+  padding: 20px;
   top: 10px;
   right: 10px;
 }
