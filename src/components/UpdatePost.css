@@ -67,6 +67,27 @@ button:hover {
     border: 1px solid #bee5eb;
 }
 
+/* navigate-btn */
+.navigate {
+    background: none;
+    border: none;
+    color: #6947BF;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navigate:hover {
+    text-decoration: none;
+}
+
+.navigate::before {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .update-post-form {
