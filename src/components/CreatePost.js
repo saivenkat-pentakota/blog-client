@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './CreatePost.css';
 
 const CreatePost = ({ isAuthenticated }) => {
@@ -9,7 +9,7 @@ const CreatePost = ({ isAuthenticated }) => {
     const [imageFile, setImageFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate(); 
 
     const handleFileChange = (e) => {
         setImageFile(e.target.files[0]);

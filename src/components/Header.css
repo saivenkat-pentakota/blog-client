@@ -1,3 +1,5 @@
+/* Header.css */
+
 .header {
     position: fixed;
     top: 0;
@@ -8,7 +10,28 @@
     align-items: center;
     padding: 1rem;
     background-color: #fff;
-    z-index: 1000; /* Ensure header is on top */
+    z-index: 1000;
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Show hamburger menu on mobile screens */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+/* Hide the logout button on mobile screens */
+@media (max-width: 768px) {
+    .header-nav .btn-logout {
+        display: none;
+    }
 }
 
 .header-nav {
@@ -35,20 +58,8 @@
     background-color: #c82333;
 }
 
-/* Hamburger menu styles */
-.hamburger-menu {
-    display: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-}
-
-.hamburger-menu .hamburger-icon {
-    display: block;
-}
-
-/* Responsive Design */
+/* Responsive Design for Logout Button */
 @media (max-width: 768px) {
-
     .header-nav {
         flex-direction: column; 
         align-items: flex-end; 
@@ -59,16 +70,5 @@
         width: 120px;
         margin-right: 0;
         font-size: 12px;
-    }
-
-    /* Show hamburger menu in mobile view */
-    .hamburger-menu {
-        display: block;
-        margin-left: auto; /* Move hamburger to the right */
-    }
-
-    /* Adjust the logout button when sidebar is open */
-    .header-nav.open .btn-logout {
-        margin-left: 0;
     }
 }

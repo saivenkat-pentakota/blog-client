@@ -1,7 +1,7 @@
 import React from 'react';
-import Cookies from 'js-cookie'; // Import js-cookie
+import Cookies from 'js-cookie'; 
 import { useNavigate } from 'react-router-dom';
-import './ProfilePage.css'; // Import CSS file for styling
+import './ProfilePage.css'; 
 
 const ProfilePage = () => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ProfilePage = () => {
             <h2>Profile</h2>
             <div className="profile-info">
                 <p>Email: {userEmail}</p>
-                {/* Add other user profile details here */}
+                
             </div>
         </div>
     );

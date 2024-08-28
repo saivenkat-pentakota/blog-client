@@ -1,8 +1,6 @@
-// Header.js
 import React from 'react';
 import Cookies from 'js-cookie'; 
 import './Header.css';
-import './SideBar.css'; 
 
 const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
     const handleLogout = () => {

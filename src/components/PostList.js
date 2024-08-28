@@ -15,7 +15,7 @@ const PostList = ({ isAuthenticated }) => {
             }
 
             const apiUrl = process.env.REACT_APP_API_URL;
-            console.log(`API URL: ${apiUrl}`);  // Debugging line
+            console.log(`API URL: ${apiUrl}`); 
 
             if (!apiUrl) {
                 setError('API URL is not defined');

@@ -5,7 +5,25 @@
   flex-direction: row;
   flex: 1;
   padding-top: 60px; 
-  transition: filter 0.3s ease; 
+  transition: filter 0.3s ease, margin-left 0.3s ease;
+}
+
+/* Adjust for the sidebar when it's open on mobile screens */
+.content-wrapper.overlay {
+  filter: blur(4px);
+  margin-left: 250px; /* Adjust based on your sidebar width */
+}
+
+/* Position and style the overlay for the sidebar on mobile */
+.content-wrapper.overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Ensure the overlay is below the sidebar but above the main content */
 }
 
 .app-container {
@@ -31,27 +49,12 @@ footer {
   border-top: 1px solid #ddd;
 }
 
-
-.content-wrapper.overlay {
-  filter: blur(4px);
-}
-
-.content-wrapper.overlay::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
-  z-index: 1000; 
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .content-wrapper {
     padding-top: 60px;
     flex-direction: column; 
+    margin-left: 0; /* Remove left margin for mobile */
   }
 
   .main-content {
