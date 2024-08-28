@@ -1,3 +1,4 @@
+// SideBar.js
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import homeImg from '../Images/home.png';
@@ -9,11 +10,12 @@ import markImg from '../Images/mark.png';
 import profileImg from '../Images/profile.png';
 import './SideBar.css';
 
-const SideBar = ({ isAuthenticated }) => {
-  const location = useLocation();  // Use the useLocation hook to get the current path
+const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
+  const location = useLocation(); 
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+      <div className="sidebar-close" onClick={toggleSidebar}>×</div> {/* Unicode for close icon */}
       <nav>
         <ul>
           <li className={location.pathname === "/post" ? "active" : ""}>
@@ -41,7 +43,6 @@ const SideBar = ({ isAuthenticated }) => {
               <img src={writingImg} alt="writingImgIcon"/>
             </Link>
           </li>
-          
           <li className={location.pathname === "/mark" ? "active" : ""}>
             <Link to="/mark">
               <img src={markImg} alt="markImgIcon"/>

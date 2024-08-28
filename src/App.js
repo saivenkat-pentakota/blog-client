@@ -13,15 +13,28 @@ import './App.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <Router>
       <div className="app-container">
         {isAuthenticated ? (
           <>
-            <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-            <div className="content-wrapper">
-              <SideBar isAuthenticated={isAuthenticated} /> 
+            <Header 
+              isAuthenticated={isAuthenticated} 
+              setIsAuthenticated={setIsAuthenticated} 
+              toggleSidebar={toggleSidebar} 
+            />
+            <div className={`content-wrapper ${isSidebarOpen ? 'overlay' : ''}`}>
+              <SideBar 
+                isAuthenticated={isAuthenticated} 
+                isSidebarOpen={isSidebarOpen} 
+                toggleSidebar={toggleSidebar} 
+              />
               <main className="main-content">
                 <Routes>
                   <Route path="/posts" element={<PostList isAuthenticated={isAuthenticated} />}/>
