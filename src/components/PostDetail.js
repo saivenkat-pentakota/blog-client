@@ -8,9 +8,6 @@ import deleteImg from '../Images/delete.png';
 const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
-    const [posts, setPosts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const postsPerPage = 5;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,14 +15,6 @@ const PostDetail = () => {
             .then(response => setPost(response.data))
             .catch(error => console.error(error));
     }, [id]);
-
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/posts`, {
-            params: { _page: currentPage, _limit: postsPerPage }
-        })
-            .then(response => setPosts(response.data))
-            .catch(error => console.error(error));
-    }, [currentPage]);
 
     const handleEditClick = () => {
         navigate(`/update-post/${id}`);
@@ -37,10 +26,6 @@ const PostDetail = () => {
                 navigate('/posts');
             })
             .catch(error => console.error('Error deleting post:', error));
-    };
-
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
     };
 
     if (!post) return <div>Loading...</div>;
@@ -73,17 +58,6 @@ const PostDetail = () => {
                     className="post-image" 
                 />
             )}
-            <div className='pagination'>
-                {[...Array(Math.ceil(posts.total / postsPerPage)).keys()].map(number => (
-                    <button 
-                        key={number + 1} 
-                        onClick={() => handlePageChange(number + 1)} 
-                        className={`pagination-button ${currentPage === number + 1 ? 'active' : ''}`}
-                    >
-                        {number + 1}
-                    </button>
-                ))}
-            </div>
         </div>
     );
 };

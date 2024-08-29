@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './PostList.css';
@@ -8,7 +8,7 @@ const PostList = ({ isAuthenticated }) => {
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [error, setError] = useState('');
 
-    const fetchPosts = useCallback(async () => {
+    const fetchPosts = async () => {
         if (!isAuthenticated) {
             return;
         }
@@ -28,11 +28,11 @@ const PostList = ({ isAuthenticated }) => {
             console.error('Error fetching posts:', error.response || error.message || error);
             setError('Failed to load posts');
         }
-    }, [isAuthenticated]); // Dependency on isAuthenticated
+    };
 
     useEffect(() => {
         fetchPosts();
-    }, [fetchPosts]); // Dependency on fetchPosts
+    }, [isAuthenticated]); 
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
