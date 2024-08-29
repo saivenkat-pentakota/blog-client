@@ -17,13 +17,7 @@
   overflow-y: auto;
 }
 
-/* Footer styling */
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #f4f4f4;
-  border-top: 1px solid #ddd;
-}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -38,10 +32,7 @@ footer {
     margin-left: 0; /* No left margin on small screens */
   }
 
-  footer {
-    padding: 0.75rem;
-    font-size: 0.9rem;
-  }
+
 
   /* Sidebar should collapse or hide on smaller screens */
   .sidebar {
@@ -76,10 +67,5 @@ footer {
     cursor: pointer;
   }
 
-  /* Adjust footer position on smaller screens */
-  footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
+ 
 }

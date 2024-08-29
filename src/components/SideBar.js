@@ -24,12 +24,9 @@ const SideBar = ({
     }
   };
 
-  const handleLogout = () => {
-    console.log("Logout triggered from Sidebar");
-    console.log(`isAuthenticated: ${isAuthenticated}`);
+  const handleLogout = () => { 
     Cookies.remove("userEmail");
     setIsAuthenticated(false);
-    console.log("isAuthenticated set to false");
   };
 
   return (
@@ -77,7 +74,6 @@ const SideBar = ({
             alt="logout"
             className="logout-button"
             onClick={() => {
-              console.log("Inline function triggered");
               handleLogout();
             }}
           />
