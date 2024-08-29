@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './PostList.css';
@@ -7,8 +7,12 @@ const PostList = ({ isAuthenticated }) => {
     const [posts, setPosts] = useState([]);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [error, setError] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPosts, setTotalPosts] = useState(0);
+    const postsPerPage = 5;
 
-    const fetchPosts = async () => {
+    // Memoize fetchPosts to prevent unnecessary re-renders
+    const fetchPosts = useCallback(async (page) => {
         if (!isAuthenticated) {
             return;
         }
@@ -22,10 +26,11 @@ const PostList = ({ isAuthenticated }) => {
         }
 
         try {
-            const response = await axios.get(`${apiUrl}/posts`);
+            const response = await axios.get(`${apiUrl}/posts?page=${page}&limit=${postsPerPage}`);
             console.log(response.data); // Debugging line
-            if (Array.isArray(response.data)) {
-                setPosts(response.data);
+            if (Array.isArray(response.data.posts)) {
+                setPosts(response.data.posts);
+                setTotalPosts(response.data.totalPosts);
             } else {
                 setError('Unexpected data format');
             }
@@ -33,15 +38,21 @@ const PostList = ({ isAuthenticated }) => {
             console.error('Error fetching posts:', error.response || error.message || error);
             setError('Failed to load posts');
         }
-    };
+    }, [isAuthenticated, postsPerPage]);
 
     useEffect(() => {
-        fetchPosts();
-    }, [isAuthenticated]);
+        fetchPosts(currentPage);
+    }, [fetchPosts, currentPage]); // Include fetchPosts in the dependency array
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
     };
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
 
     if (!isAuthenticated) {
         return <p className="error-message">Please Signup or Login to see the data in Home Page.</p>;
@@ -81,6 +92,15 @@ const PostList = ({ isAuthenticated }) => {
                         <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
                     </div>
                 ))}
+            </div>
+
+            <div className="pagination">
+                {currentPage > 1 && (
+                    <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                )}
+                {currentPage < totalPages && (
+                    <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                )}
             </div>
         </div>
     );

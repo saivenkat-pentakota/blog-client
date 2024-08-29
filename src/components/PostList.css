@@ -86,6 +86,33 @@
     text-align: center;
 }
 
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.pagination button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    color: #888;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .PostListContainer {
@@ -119,7 +146,7 @@
         padding: 0.5rem;
     }
 
-    .titles-section{
+    .titles-section {
         margin-top: 3rem;
     }
 
@@ -142,5 +169,13 @@
 
     .error-message {
         font-size: 0.8rem;
+    }
+
+    .pagination {
+        flex-direction: column;
+    }
+
+    .pagination button {
+        margin: 0.5rem 0;
     }
 }
