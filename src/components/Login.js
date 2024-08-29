@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { ClipLoader } from 'react-spinners'; 
 import './Login.css';
+import Spinner from './Spinner'; // Import the Spinner component
 
 const Login = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState('');
@@ -58,7 +58,7 @@ const Login = ({ setIsAuthenticated }) => {
             {success && <div className="popup success">{success}</div>}
             {loading && (
                 <div className="loading-animation">
-                    <ClipLoader color="#007bff" loading={loading} size={100} />
+                    <Spinner />
                 </div>
             )}
             <form onSubmit={handleLogin} className="login-form">
