@@ -70,6 +70,7 @@
 /* logout-button */
 .sidebar .logout-button{
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 /* Show sidebar always on large screens */

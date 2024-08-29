@@ -5,6 +5,7 @@ import './Header.css';
 
 const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar, isSidebarOpen }) => {
     const handleLogout = () => {
+        console.log("Logout triggered from Header");
         Cookies.remove('userEmail');
         setIsAuthenticated(false);
     };

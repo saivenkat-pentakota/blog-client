@@ -17,7 +17,8 @@ const SideBar = ({ isAuthenticated, setIsAuthenticated, isSidebarOpen, toggleSid
     toggleSidebar(); 
   };
 
-  const onLogout = () => {
+  const handleSidebarLogout = () => {
+    console.log("Logout triggered from Sidebar");
     Cookies.remove('userEmail');
     setIsAuthenticated(false);
   };
@@ -66,7 +67,7 @@ const SideBar = ({ isAuthenticated, setIsAuthenticated, isSidebarOpen, toggleSid
             src={logoutButtonIcon} 
             alt='logout' 
             className='logout-button' 
-            onClick={onLogout} 
+            onClick={handleSidebarLogout} 
           />
         </div>
       )}
