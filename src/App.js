@@ -1,3 +1,4 @@
+// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import PostList from './components/PostList';
@@ -29,6 +30,7 @@ const App = () => {
               isAuthenticated={isAuthenticated} 
               setIsAuthenticated={setIsAuthenticated} 
               toggleSidebar={toggleSidebar} 
+              isSidebarOpen={isSidebarOpen} 
             />
             <div className="content-wrapper"> 
               <SideBar 

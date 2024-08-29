@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import logoutButtonIcon from '../Images/logout-button.png';
 import './Header.css';
 
-const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
+const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar, isSidebarOpen }) => {
     const handleLogout = () => {
         Cookies.remove('userEmail');
         setIsAuthenticated(false);
@@ -14,7 +14,9 @@ const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
             <header className="header">
                 <nav className="header-nav">
                     <div className="hamburger-menu" onClick={toggleSidebar}>
-                        <span className="hamburger-icon">&#9776;</span>
+                        <span className="hamburger-icon">
+                            {isSidebarOpen ? '\u00D7' : '\u2630'}
+                        </span>
                     </div>
                     {isAuthenticated && (
                         <img 

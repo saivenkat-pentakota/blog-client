@@ -12,39 +12,42 @@ import './SideBar.css';
 const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar, handleLogout }) => {
   const location = useLocation();
 
+  const handleLinkClick = () => {
+    toggleSidebar(); // Close the sidebar when an icon is clicked
+  };
+
   return (
     <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-      <div className="close-btn" onClick={toggleSidebar}>&times;</div>
       <nav>
         <ul>
           <li className={location.pathname === "/posts" ? "active" : ""}>
-            <Link to="/posts">
+            <Link to="/posts" onClick={handleLinkClick}>
               <img className="home-img" src={homeImg} alt="homeImgIcon"/>
             </Link>
           </li>
           <li className={location.pathname === "/create" ? "active" : ""}>
-            <Link to="/create">
+            <Link to="/create" onClick={handleLinkClick}>
               <img src={bookImg} alt="bookImgIcon"/>
             </Link>
           </li>
           <li className={location.pathname === "/file" ? "active" : ""}>
-            <Link to="/file">
+            <Link to="/file" onClick={handleLinkClick}>
               <img src={fileImg} alt="fileImgIcon"/>
             </Link>
           </li>
           <li className={location.pathname === "/writing" ? "active" : ""}>
-            <Link to="/writing">
+            <Link to="/writing" onClick={handleLinkClick}>
               <img src={writingImg} alt="writingImgIcon"/>
             </Link>
           </li>
           <li className={location.pathname === "/mark" ? "active" : ""}>
-            <Link to="/mark">
+            <Link to="/mark" onClick={handleLinkClick}>
               <img src={markImg} alt="markImgIcon"/>
             </Link>
           </li>
           {isAuthenticated && (
             <li className={location.pathname === "/profile" ? "active" : ""}>
-              <Link to="/profile">
+              <Link to="/profile" onClick={handleLinkClick}>
                 <img src={profileImg} alt="profileImgIcon"/>
               </Link>
             </li>
