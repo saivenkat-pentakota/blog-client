@@ -29,6 +29,7 @@ const SideBar = ({
     console.log(`isAuthenticated: ${isAuthenticated}`);
     Cookies.remove("userEmail");
     setIsAuthenticated(false);
+    console.log("isAuthenticated set to false");
   };
 
   return (
