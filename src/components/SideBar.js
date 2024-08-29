@@ -14,8 +14,11 @@ const SideBar = ({ isAuthenticated, setIsAuthenticated, isSidebarOpen, toggleSid
   const location = useLocation();
 
   const handleLinkClick = () => {
-    toggleSidebar(); 
+    if (typeof toggleSidebar === 'function') {
+      toggleSidebar(); 
+    }
   };
+  
 
   const handleSidebarLogout = () => {
     console.log("Logout triggered from Sidebar");
