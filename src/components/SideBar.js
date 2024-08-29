@@ -66,13 +66,14 @@ const SideBar = ({ isAuthenticated, setIsAuthenticated, isSidebarOpen, toggleSid
       </nav>
       {isAuthenticated && (
         <div className="sidebar-logout">
-          <img 
-            src={logoutButtonIcon} 
-            alt='logout' 
-            className='logout-button' 
-            onClick={handleSidebarLogout} 
-          />
-        </div>
+        <img 
+          src={logoutButtonIcon} 
+          alt='logout' 
+          className='logout-button' 
+          onClick={() => handleSidebarLogout()} 
+        />
+      </div>
+      
       )}
     </aside>
   );
