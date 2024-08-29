@@ -92,9 +92,10 @@
 
 /* Loading animation */
 .loading-animation {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
-    background-color: rgba(0, 0, 255, 0.1);
 }
 
 /* Responsive Design */

@@ -50,7 +50,7 @@ h2 {
 }
 
 .back-text{
-    font-size: 10px;
+    font-size: 18px;
     color: #007bff;
 }
 
@@ -87,10 +87,6 @@ h2 {
         font-size: 1.5rem;
     }
 
-    p {
-        font-size: 1rem;
-    }
-
     .post-image {
         max-height: 300px;
     }
@@ -103,10 +99,6 @@ h2 {
 
     h2 {
         font-size: 1.25rem;
-    }
-
-    p {
-        font-size: 0.9rem;
     }
 
     .post-image {
