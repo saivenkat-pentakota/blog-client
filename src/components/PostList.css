@@ -119,6 +119,10 @@
         padding: 0.5rem;
     }
 
+    .titles-section{
+        margin-top: 3rem;
+    }
+
     .titles-section h2,
     .posts-section h2 {
         font-size: 1.25rem;
