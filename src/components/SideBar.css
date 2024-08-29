@@ -69,7 +69,9 @@
 
 /* logout-button */
 .sidebar .logout-button{
-  margin-bottom: 3rem;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4rem;
   cursor: pointer;
 }
 
