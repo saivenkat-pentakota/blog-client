@@ -51,9 +51,9 @@ const App = () => {
                 </Routes>
               </main>
             </div>
-            <footer>
+            {/* <footer>
               <p>&copy; 2024 My Blog</p>
-            </footer>
+            </footer> */}
           </>
         ) : (
           <Routes>
