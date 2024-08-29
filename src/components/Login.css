@@ -27,7 +27,7 @@
 }
 
 .login-form .form-group input {
-    width: 100%; /* Adjusted to 100% for better responsiveness */
+    width: 300px;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -35,7 +35,7 @@
 }
 
 .login-button {
-    width: 100%; /* Adjusted to 100% for better responsiveness */
+    width: 320px;
     padding: 10px;
     font-size: 16px;
     color: #fff;
@@ -92,12 +92,9 @@
 
 /* Loading animation */
 .loading-animation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     margin-top: 20px;
-    height: 100px; /* Added height for better visibility */
-    width: 100%;
+    background-color: rgba(0, 0, 255, 0.1);
 }
 
 /* Responsive Design */
@@ -115,10 +112,5 @@
     .login-button {
         padding: 8px;
         font-size: 14px;
-    }
-
-    /* Adjusting the height for loading animation on smaller screens */
-    .loading-animation {
-        height: 80px;
     }
 }

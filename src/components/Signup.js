@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Spinner from "./Spinner";
 import "./Signup.css";
 
 const Signup = () => {
@@ -9,6 +10,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -25,9 +27,11 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
+    setLoading(true);
 
     if (!validateEmail(email)) {
       setError("Invalid email format");
+      setLoading(false);
       return;
     }
 
@@ -35,11 +39,13 @@ const Signup = () => {
       setError(
         "Password must be at least 8 characters long and include at least one letter, one number, and one special character"
       );
+      setLoading(false); 
       return;
     }
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false); // Hide spinner
       return;
     }
 
@@ -54,12 +60,14 @@ const Signup = () => {
 
       if (res.status === 201) {
         setSuccess("Signup successful! Redirecting to login page...");
+        setLoading(false);
         setTimeout(() => {
-          navigate("/login"); 
+          navigate("/login");
         }, 2000);
       }
     } catch (err) {
       setError(err.response?.data?.error || "Signup failed");
+      setLoading(false); 
     }
   };
 
@@ -68,7 +76,7 @@ const Signup = () => {
       <h2>Sign Up</h2>
       {error && <div className="popup error">{error}</div>}
       {success && <div className="popup success">{success}</div>}
-      <form onSubmit={handleSignup} className="signup-form"> 
+      <form onSubmit={handleSignup} className="signup-form">
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -100,9 +108,10 @@ const Signup = () => {
           Sign Up
         </button>
         <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+          Already have an account? <Link to="/login">Log in</Link>
+        </p>
       </form>
+      {loading && <Spinner />}
     </div>
   );
 };
