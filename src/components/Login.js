@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { ClipLoader } from 'react-spinners'; 
+import { BeatLoader } from 'react-spinners'; 
 import './Login.css';
 
 const Login = ({ setIsAuthenticated }) => {
@@ -58,7 +58,7 @@ const Login = ({ setIsAuthenticated }) => {
             {success && <div className="popup success">{success}</div>}
             {loading && (
                 <div className="loading-animation">
-                    <ClipLoader color="#007bff" loading={loading} size={100} />
+                    <BeatLoader color="#007bff" loading={loading} size={15} />
                 </div>
             )}
             <form onSubmit={handleLogin} className="login-form">

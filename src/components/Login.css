@@ -27,7 +27,7 @@
 }
 
 .login-form .form-group input {
-    width: 300px;
+    width: 100%; /* Adjusted to 100% for better responsiveness */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -35,7 +35,7 @@
 }
 
 .login-button {
-    width: 320px;
+    width: 100%; /* Adjusted to 100% for better responsiveness */
     padding: 10px;
     font-size: 16px;
     color: #fff;
@@ -96,6 +96,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    height: 100px; /* Added height for better visibility */
+    width: 100%;
 }
 
 /* Responsive Design */
@@ -113,5 +115,10 @@
     .login-button {
         padding: 8px;
         font-size: 14px;
+    }
+
+    /* Adjusting the height for loading animation on smaller screens */
+    .loading-animation {
+        height: 80px;
     }
 }
