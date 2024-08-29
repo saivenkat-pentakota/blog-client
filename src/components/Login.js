@@ -22,15 +22,17 @@ const Login = ({ setIsAuthenticated }) => {
         e.preventDefault();
         setError('');
         setSuccess('');
-        setLoading(false);
+        setLoading(true);
 
         if (!validateEmail(email)) {
             setError('Invalid email format');
+            setLoading(false);
             return;
         }
 
         if (password.length < 8) {
             setError('Password must be at least 8 characters long');
+            setLoading(false);
             return;
         }
 
@@ -38,7 +40,6 @@ const Login = ({ setIsAuthenticated }) => {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
                 setSuccess('Login successful!');
-                setLoading(true);
                 Cookies.set('userEmail', email, { expires: 7 });
                 setIsAuthenticated(true);
                 setTimeout(() => {
@@ -48,6 +49,7 @@ const Login = ({ setIsAuthenticated }) => {
             }
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed');
+            setLoading(false);
         }
     };
 
@@ -82,7 +84,7 @@ const Login = ({ setIsAuthenticated }) => {
                     Don't have an account? <Link to="/signup">Sign up</Link>
                 </p>
             </form>
-            {loading && <Spinner />   }
+            {loading && <Spinner />}
         </div>
     );
 };
