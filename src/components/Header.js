@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie'; 
+import logoutButtonIcon from '../Images/logout-button.png';
 import './Header.css';
 
 const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
@@ -16,7 +17,12 @@ const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
                         <span className="hamburger-icon">&#9776;</span>
                     </div>
                     {isAuthenticated && (
-                        <button className="btn-logout" onClick={handleLogout}>logout</button>
+                        <img 
+                        src={logoutButtonIcon} 
+                        alt='logout' 
+                        className='action-image button-logout' 
+                        onClick={handleEditClick} 
+                    />
                     )}
                 </nav>
             </header>

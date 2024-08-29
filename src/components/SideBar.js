@@ -11,6 +11,7 @@ import './SideBar.css';
 const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
   const location = useLocation(); 
 
+  
   return (
     <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
       <div className="close-btn" onClick={toggleSidebar}>&times;</div>
