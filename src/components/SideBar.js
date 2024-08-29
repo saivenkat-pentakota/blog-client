@@ -75,7 +75,7 @@ const SideBar = ({
           <img
             src={logoutButtonIcon}
             alt="logout"
-            className="button-logout"
+            className="logout-button"
             onClick={() => {
               console.log("Inline function triggered");
               handleLogout();
