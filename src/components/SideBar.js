@@ -6,12 +6,12 @@ import fileImg from '../Images/file.png';
 import writingImg from '../Images/writing.png';
 import markImg from '../Images/mark.png';
 import profileImg from '../Images/profile.png';
+import logoutButtonIcon from '../Images/logout-button.png';
 import './SideBar.css';
 
-const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
-  const location = useLocation(); 
+const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar, handleLogout }) => {
+  const location = useLocation();
 
-  
   return (
     <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
       <div className="close-btn" onClick={toggleSidebar}>&times;</div>
@@ -51,6 +51,16 @@ const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar }) => {
           )}
         </ul>
       </nav>
+      {isAuthenticated && (
+        <div className="sidebar-logout">
+          <img 
+            src={logoutButtonIcon} 
+            alt='logout' 
+            className='action-image' 
+            onClick={handleLogout} 
+          />
+        </div>
+      )}
     </aside>
   );
 };

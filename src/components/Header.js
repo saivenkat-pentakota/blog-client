@@ -1,12 +1,12 @@
 import React from 'react';
-import Cookies from 'js-cookie'; 
+import Cookies from 'js-cookie';
 import logoutButtonIcon from '../Images/logout-button.png';
 import './Header.css';
 
 const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
     const handleLogout = () => {
-        Cookies.remove('userEmail'); 
-        setIsAuthenticated(false); 
+        Cookies.remove('userEmail');
+        setIsAuthenticated(false);
     };
 
     return (
@@ -18,11 +18,11 @@ const Header = ({ isAuthenticated, setIsAuthenticated, toggleSidebar }) => {
                     </div>
                     {isAuthenticated && (
                         <img 
-                        src={logoutButtonIcon} 
-                        alt='logout' 
-                        className='action-image button-logout' 
-                        onClick={handleEditClick} 
-                    />
+                            src={logoutButtonIcon} 
+                            alt='logout' 
+                            className='action-image button-logout' 
+                            onClick={handleLogout} 
+                        />
                     )}
                 </nav>
             </header>

@@ -9,11 +9,14 @@
   z-index: 1000;
   left: 0;
   transform: translateX(-100%);
-  width: auto; 
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .sidebar.open {
-  transform: translateX(0); 
+  transform: translateX(0);
 }
 
 .sidebar nav ul {
@@ -54,6 +57,13 @@
   margin-right: 0.5rem;
 }
 
+/* Sidebar logout button */
+.sidebar-logout {
+  margin-top: auto;
+  padding: 1rem 0;
+  text-align: center;
+}
+
 /* Close button */
 .close-btn {
   font-size: 2rem;
@@ -68,7 +78,7 @@
 @media (min-width: 769px) {
   .sidebar {
     transform: translateX(0);
-    width: auto; 
+    width: auto;
   }
 
   .close-btn {
@@ -83,6 +93,6 @@
   }
 
   .sidebar {
-    width: 120px; 
+    width: 120px;
   }
 }
