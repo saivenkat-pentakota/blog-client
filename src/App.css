@@ -1,12 +1,12 @@
 /* App.css */
 
-.content-wrapper {
+/* .content-wrapper {
   display: flex;
   flex-direction: row;
   flex: 1;
   padding-top: 60px; 
   transition: margin-left 0.3s ease;
-}
+} */
 
 .app-container {
   display: flex;
@@ -33,11 +33,11 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .content-wrapper {
+  /* .content-wrapper {
     padding-top: 60px;
     flex-direction: column; 
     margin-left: 0; 
-  }
+  } */
 
   .main-content {
     padding: 0.5rem; 
