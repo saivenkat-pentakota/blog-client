@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './Login.css';
-import Spinner from './Spinner'; // Import the Spinner component
+import Spinner from './Spinner'; 
 
 const Login = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState('');
@@ -56,11 +56,6 @@ const Login = ({ setIsAuthenticated }) => {
             <h2>Login</h2>
             {error && <div className="popup error">{error}</div>}
             {success && <div className="popup success">{success}</div>}
-            {loading && (
-                <div className="loading-animation">
-                    <Spinner />
-                </div>
-            )}
             <form onSubmit={handleLogin} className="login-form">
                 <div className="form-group">
                     <label>Email:</label>
@@ -87,6 +82,7 @@ const Login = ({ setIsAuthenticated }) => {
                     Don't have an account? <Link to="/signup">Sign up</Link>
                 </p>
             </form>
+            {loading && <Spinner />   }
         </div>
     );
 };
