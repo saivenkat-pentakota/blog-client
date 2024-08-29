@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 import homeImg from '../Images/home.png';
 import bookImg from '../Images/book.png';
 import fileImg from '../Images/file.png';
@@ -9,11 +10,16 @@ import profileImg from '../Images/profile.png';
 import logoutButtonIcon from '../Images/logout-button.png';
 import './SideBar.css';
 
-const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar, handleLogout }) => {
+const SideBar = ({ isAuthenticated, setIsAuthenticated, isSidebarOpen, toggleSidebar }) => {
   const location = useLocation();
 
   const handleLinkClick = () => {
-    toggleSidebar(); // Close the sidebar when an icon is clicked
+    toggleSidebar(); 
+  };
+
+  const onLogout = () => {
+    Cookies.remove('userEmail');
+    setIsAuthenticated(false);
   };
 
   return (
@@ -60,7 +66,7 @@ const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar, handleLogout }
             src={logoutButtonIcon} 
             alt='logout' 
             className='logout-button' 
-            onClick={handleLogout} 
+            onClick={onLogout} 
           />
         </div>
       )}
