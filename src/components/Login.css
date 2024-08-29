@@ -69,7 +69,6 @@
     text-decoration: underline;
 }
 
-
 /* Popup notifications */
 .popup {
     padding: 10px;
@@ -89,6 +88,12 @@
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
+}
+
+/* Loading animation */
+.loading-animation {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Responsive Design */

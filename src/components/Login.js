@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate ,Link} from 'react-router-dom';
-import Cookies from 'js-cookie'; // Import js-cookie
+import { useNavigate, Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { ClipLoader } from 'react-spinners'; // Import the spinner
 import './Login.css';
 
 const Login = ({ setIsAuthenticated }) => {
@@ -9,6 +10,7 @@ const Login = ({ setIsAuthenticated }) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -20,6 +22,7 @@ const Login = ({ setIsAuthenticated }) => {
         e.preventDefault();
         setError('');
         setSuccess('');
+        setLoading(false);
 
         if (!validateEmail(email)) {
             setError('Invalid email format');
@@ -34,11 +37,13 @@ const Login = ({ setIsAuthenticated }) => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
-                setSuccess('Login successful! Redirecting to homepage...');
-                Cookies.set('userEmail', email, { expires: 7 }); // Store email in cookies
-                setIsAuthenticated(true); // Update the auth state to true
+                setSuccess('Login successful!');
+                setLoading(true);
+                Cookies.set('userEmail', email, { expires: 7 });
+                setIsAuthenticated(true);
                 setTimeout(() => {
-                    navigate('/posts'); // Navigate to homepage after successful login
+                    setLoading(false);
+                    navigate('/posts');
                 }, 2000);
             }
         } catch (err) {
@@ -51,6 +56,11 @@ const Login = ({ setIsAuthenticated }) => {
             <h2>Login</h2>
             {error && <div className="popup error">{error}</div>}
             {success && <div className="popup success">{success}</div>}
+            {loading && (
+                <div className="loading-animation">
+                    <ClipLoader color="#007bff" loading={loading} size={50} />
+                </div>
+            )}
             <form onSubmit={handleLogin} className="login-form">
                 <div className="form-group">
                     <label>Email:</label>
@@ -72,10 +82,10 @@ const Login = ({ setIsAuthenticated }) => {
                         autoComplete='password'
                     />
                 </div>
-                <button type="submit" className="login-button">Login</button>
+                <button type="submit" className="login-button" disabled={loading}>Login</button>
                 <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </p>
+                    Don't have an account? <Link to="/signup">Sign up</Link>
+                </p>
             </form>
         </div>
     );
