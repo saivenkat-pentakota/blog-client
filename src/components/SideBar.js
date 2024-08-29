@@ -56,7 +56,7 @@ const SideBar = ({ isAuthenticated, isSidebarOpen, toggleSidebar, handleLogout }
           <img 
             src={logoutButtonIcon} 
             alt='logout' 
-            className='action-image' 
+            className='logout-button' 
             onClick={handleLogout} 
           />
         </div>
