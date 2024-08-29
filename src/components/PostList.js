@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './PostList.css';
 
 const PostList = ({ isAuthenticated }) => {
-    const [posts, setPosts] = useState();
+    const [posts, setPosts] = useState([]);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [error, setError] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
