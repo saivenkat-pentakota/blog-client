@@ -30,7 +30,6 @@ const SideBar = ({
     Cookies.remove("userEmail");
     setIsAuthenticated(false);
   };
-  
 
   return (
     <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
@@ -76,7 +75,10 @@ const SideBar = ({
             src={logoutButtonIcon}
             alt="logout"
             className="action-image button-logout"
-            onClick={handleLogout}
+            onClick={() => {
+              console.log("Inline function triggered");
+              handleLogout();
+            }}
           />
         </div>
       )}
