@@ -1,3 +1,5 @@
+/* SideBar.css */
+
 .sidebar {
   padding: 1rem;
   height: 100%;
@@ -54,4 +56,44 @@
   height: 24px;
 }
 
-/*
+/* Close button */
+.close-btn {
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  padding: 20px;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+/* logout-button */
+.sidebar .logout-button{
+  margin-bottom: 2rem;
+}
+
+/* Show sidebar always on large screens */
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0);
+    width: auto;
+  }
+
+  .close-btn {
+    display: none;
+  }
+}
+
+/* Show close button and restrict sidebar width on mobile */
+@media (max-width: 768px) {
+  .close-btn {
+    display: block;
+  }
+
+  .sidebar {
+    width: 120px;
+  }
+  .logout-button{
+    display: none;
+  }
+}
