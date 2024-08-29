@@ -23,7 +23,12 @@ const PostList = ({ isAuthenticated }) => {
 
         try {
             const response = await axios.get(`${apiUrl}/posts`);
-            setPosts(response.data);
+            console.log(response.data); // Debugging line
+            if (Array.isArray(response.data)) {
+                setPosts(response.data);
+            } else {
+                setError('Unexpected data format');
+            }
         } catch (error) {
             console.error('Error fetching posts:', error.response || error.message || error);
             setError('Failed to load posts');
@@ -32,7 +37,7 @@ const PostList = ({ isAuthenticated }) => {
 
     useEffect(() => {
         fetchPosts();
-    }, [isAuthenticated]); 
+    }, [isAuthenticated]);
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
