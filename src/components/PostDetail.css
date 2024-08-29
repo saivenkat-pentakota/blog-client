@@ -48,12 +48,9 @@ h2 {
     margin-bottom: 1rem;
     color: #333;
 }
-
-.back-text{
-    font-size: 18px;
-    color: #007bff;
+p{
+    color: #333;
 }
-
 .post-image {
     width: 100%;
     height: auto;
@@ -105,8 +102,8 @@ h2 {
         max-height: 200px;
     }
     .action-image {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         cursor: pointer;
         border: none;
     }

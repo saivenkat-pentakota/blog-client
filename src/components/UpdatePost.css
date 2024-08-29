@@ -76,7 +76,7 @@ button:hover {
     cursor: pointer;
     margin-bottom: 1rem;
     display: inline-flex;
-    align-items: center;
+    
 }
 
 .navigate:hover {
