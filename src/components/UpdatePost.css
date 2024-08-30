@@ -78,6 +78,9 @@ button:hover {
     display: inline-flex;
     
 }
+.navigate p{
+    font-size: 1rem;
+}
 
 .navigate:hover {
     text-decoration: none;
