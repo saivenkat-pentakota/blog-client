@@ -1,5 +1,6 @@
 /* PostList.css */
 
+/* Container styling */
 .PostListContainer {
     max-width: 1200px;
     margin: 1rem auto;
@@ -12,19 +13,20 @@
     flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
+/* Posts section styling */
 .posts-section {
-    flex-basis: 70%; /* 70% of container */
+    flex: 2; /* Takes more space */
     margin-right: 1rem;
     background: #fff;
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    /* Removed overflow-y */
 }
 
+/* Titles section styling */
 .titles-section {
-    flex-basis: 30%; /* 30% of container */
+    flex: 1; /* Takes less space */
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #fff;
@@ -32,11 +34,11 @@
     max-height: 80vh;
     overflow-y: auto;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-right: 24px;
     position: sticky;
     top: 1rem; /* Keeps the titles section fixed while scrolling */
 }
 
+/* Common styles for the list and pagination */
 .titles-list {
     list-style-type: decimal;
     padding: 0;
@@ -94,7 +96,7 @@
     color: #0056b3;
 }
 
-/* Error Message Styling */
+/* Error message styling */
 .error-message {
     margin: 1rem 0;
     padding: 0.75rem;
@@ -106,7 +108,7 @@
     text-align: center;
 }
 
-/* Pagination Styles */
+/* Pagination styles */
 .pagination {
     display: flex;
     justify-content: center;
@@ -142,14 +144,14 @@
 
     .posts-section,
     .titles-section {
-        flex-basis: 100%;
+        flex: none;
         margin-right: 0;
+        margin-bottom: 1rem;
     }
 
     .titles-section {
         position: relative;
         top: 0;
-        margin-top: 1rem;
         max-height: none; /* Remove fixed height for smaller screens */
     }
 }

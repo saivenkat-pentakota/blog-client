@@ -76,8 +76,7 @@ const PostList = ({ isAuthenticated }) => {
                         <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
                     </div>
                 ))}
-            </div>
-            <div className="pagination">
+                <div className="pagination">
                 {currentPage > 1 && (
                     <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
                 )}
@@ -85,7 +84,7 @@ const PostList = ({ isAuthenticated }) => {
                     <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
                 )}
             </div>
-
+            </div>
             <div className="titles-section">
                 <h2>Contents</h2>
                 <ul className="titles-list">
