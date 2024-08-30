@@ -61,7 +61,23 @@ const PostList = ({ isAuthenticated }) => {
         <div className="PostListContainer">
             {error && <p className="error-message">{error}</p>}
             <div className="posts-section">
-                <h3>All Posts</h3>
+            <div className="pagination">
+                    {currentPage > 1 && (
+                        <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                    )}
+                    {[...Array(totalPages)].map((_, index) => (
+                        <button 
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? 'active' : ''}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    {currentPage < totalPages && (
+                        <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                    )}
+                </div>
                 {posts.length > 0 ? (
                     posts.map(post => (
                         <div key={post.id} className="post">
