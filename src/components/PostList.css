@@ -9,26 +9,22 @@
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
 .posts-section {
-    flex: 3;
+    flex-basis: 70%; /* 70% of container */
     margin-right: 1rem;
-    max-height: 80vh;
-    overflow-y: auto;
     background: #fff;
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Removed overflow-y */
 }
 
 .titles-section {
-    flex: 1;
-    position: fixed;
-    right: 1rem;
-    top: 1rem;
-    width: 220px;
+    flex-basis: 30%; /* 30% of container */
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #fff;
@@ -36,6 +32,9 @@
     max-height: 80vh;
     overflow-y: auto;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-right: 24px;
+    position: sticky;
+    top: 1rem; /* Keeps the titles section fixed while scrolling */
 }
 
 .titles-list {
@@ -141,16 +140,17 @@
         padding: 0 1rem;
     }
 
-    .posts-section {
+    .posts-section,
+    .titles-section {
+        flex-basis: 100%;
         margin-right: 0;
     }
 
     .titles-section {
         position: relative;
-        width: 100%;
         top: 0;
-        right: 0;
         margin-top: 1rem;
+        max-height: none; /* Remove fixed height for smaller screens */
     }
 }
 
@@ -185,12 +185,16 @@
         padding: 0.5rem;
     }
 
+    .posts-section {
+        width: 100%;
+    }
+
     .title-item {
         font-size: 1rem;
     }
 
     .titles-section {
-        display: none;
+        display: none; /* Hide titles section on mobile */
     }
 
     .error-message {
