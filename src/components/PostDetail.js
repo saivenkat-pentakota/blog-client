@@ -53,7 +53,7 @@ const PostDetail = () => {
     return (
         <div className='PostDetailContainer'>
             <div className='button-container'>
-                <div onClick={() => navigate('/posts')} className="navigate">← Back</div>
+                <div onClick={() => navigate('/posts')} className="navigate">←</div>
                 <div className='action-buttons'>
                     <img 
                         src={editImg} 

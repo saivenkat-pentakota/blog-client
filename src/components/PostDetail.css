@@ -26,9 +26,6 @@
     cursor: pointer;
     font-size: 2rem;
 }
-.navigate p{
-    font-size: 1rem;
-}
 
 .navigate:hover {
     text-decoration: none;

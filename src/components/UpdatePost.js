@@ -73,7 +73,7 @@ const UpdatePost = ({ isAuthenticated }) => {
     return (
         <div className="update-post-form">
             <form onSubmit={handleSubmit}>
-                <div onClick={() => navigate(`/posts/${id}`)} className="navigate">← Back</div>
+                <div onClick={() => navigate(`/posts/${id}`)} className="navigate">←</div>
                 <div>
                     <label>Title:</label>
                     <input 

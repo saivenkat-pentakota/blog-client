@@ -92,7 +92,7 @@ const CreatePost = ({ isAuthenticated }) => {
     return (
         <div className="create-post-form">
             <form onSubmit={handleSubmit}>
-            <div onClick={() => navigate('/posts')} className="navigate">← Back</div>
+            <div onClick={() => navigate('/posts')} className="navigate">←</div>
                 <div>
                     <label htmlFor="title">Title:</label>
                     <input 
