@@ -109,10 +109,11 @@ const CreatePost = ({ isAuthenticated }) => {
                         onChange={handleFileChange} 
                     />
                 </div>
-                <button type="submit" disabled={loading}>Create Post</button>
-                {loading && <p className="loading-message">Creating post...</p>}
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Creating Post...' : 'Create Post'}
+                </button>
             </form>
         </div>
     );
