@@ -7,6 +7,7 @@ const CreatePost = ({ isAuthenticated }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(false); // For loading spinner
@@ -20,15 +21,20 @@ const CreatePost = ({ isAuthenticated }) => {
 
             if (!fileType) {
                 setErrorMessage('Invalid file type. Please upload an image (jpeg, jpg, png, gif).');
+                setImageFile(null); // Clear file if invalid
+                setImagePreview(''); // Clear preview if invalid
                 return;
             }
 
             if (!fileSize) {
                 setErrorMessage('File size too large. Please upload an image smaller than 5MB.');
+                setImageFile(null); // Clear file if invalid
+                setImagePreview(''); // Clear preview if invalid
                 return;
             }
 
             setImageFile(file);
+            setImagePreview(URL.createObjectURL(file)); // Set preview URL
             setErrorMessage(''); // Clear error message if file is valid
         }
     };
@@ -61,6 +67,7 @@ const CreatePost = ({ isAuthenticated }) => {
             setTitle('');
             setContent('');
             setImageFile(null);
+            setImagePreview(''); // Clear image preview
 
             // Clear success message after 5 seconds
             setTimeout(() => setSuccessMessage(''), 5000);
@@ -86,8 +93,9 @@ const CreatePost = ({ isAuthenticated }) => {
         <div className="create-post-form">
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Title:</label>
+                    <label htmlFor="title">Title:</label>
                     <input 
+                        id="title"
                         type="text" 
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)} 
@@ -95,19 +103,26 @@ const CreatePost = ({ isAuthenticated }) => {
                     />
                 </div>
                 <div className="content">
-                    <label>Content:</label>
+                    <label htmlFor="content">Content:</label>
                     <textarea 
+                        id="content"
                         value={content} 
                         onChange={(e) => setContent(e.target.value)} 
                         required 
                     ></textarea>
                 </div>
                 <div className="image-upload">
-                    <label>Upload Image:</label>
+                    <label htmlFor="imageFile">Upload Image:</label>
                     <input 
+                        id="imageFile"
                         type="file" 
                         onChange={handleFileChange} 
                     />
+                    {imagePreview && (
+                        <div className="image-preview">
+                            <img src={imagePreview} alt="Preview" />
+                        </div>
+                    )}
                 </div>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}

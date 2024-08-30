@@ -67,6 +67,18 @@ button:hover {
     border: 1px solid #c3e6cb;
 }
 
+.image-preview {
+    margin-top: 10px;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .create-post-form {

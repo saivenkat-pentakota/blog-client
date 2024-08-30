@@ -62,24 +62,37 @@ const PostList = ({ isAuthenticated }) => {
             {error && <p className="error-message">{error}</p>}
             <div className="posts-section">
                 <h3>All Posts</h3>
-                {posts.map(post => (
-                    <div key={post.id} className="post">
-                        {post.imageFile && (
-                            <img 
-                                src={`data:${post.imageFileType};base64,${Buffer.from(post.imageFile).toString('base64')}`} 
-                                alt={post.title} 
-                                className="post-image" 
-                            />
-                        )}
-                        <h3>{post.title}</h3>
-                        <p>{post.content.substring(0, 200)}...</p>
-                        <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
-                    </div>
-                ))}
+                {posts.length > 0 ? (
+                    posts.map(post => (
+                        <div key={post.id} className="post">
+                            {post.imageFile && (
+                                <img 
+                                    src={`data:${post.imageFileType};base64,${post.imageFile}`} 
+                                    alt={post.title} 
+                                    className="post-image" 
+                                />
+                            )}
+                            <h3>{post.title}</h3>
+                            <p>{post.content.substring(0, 200)}...</p>
+                            <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
+                        </div>
+                    ))
+                ) : (
+                    <p>No posts available</p>
+                )}
                 <div className="pagination">
                     {currentPage > 1 && (
                         <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
                     )}
+                    {[...Array(totalPages)].map((_, index) => (
+                        <button 
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? 'active' : ''}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
                     {currentPage < totalPages && (
                         <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
                     )}
