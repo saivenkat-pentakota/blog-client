@@ -78,6 +78,17 @@ button:hover {
     border-radius: 4px;
 }
 
+.navigate {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.navigate:hover {
+    text-decoration: none;
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
