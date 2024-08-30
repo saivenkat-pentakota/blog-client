@@ -27,14 +27,14 @@ const PostList = ({ isAuthenticated }) => {
         try {
             const response = await axios.get(`${apiUrl}/posts?page=${page}&limit=${postsPerPage}`);
             console.log(response.data); 
-            if (Array.isArray(response.data.posts)) {
+            if (response.data.posts && Array.isArray(response.data.posts)) {
                 setPosts(response.data.posts);
                 setTotalPosts(response.data.totalPosts);
             } else {
                 setError('Unexpected data format');
             }
         } catch (error) {
-            console.error('Error fetching posts:', error.response || error.message || error);
+            console.error('Error fetching posts:', error.response ? error.response.data : error.message);
             setError('Failed to load posts');
         }
     }, [isAuthenticated, postsPerPage]);
@@ -66,7 +66,7 @@ const PostList = ({ isAuthenticated }) => {
                     <div key={post.id} className="post">
                         {post.imageFile && (
                             <img 
-                                src={`${process.env.REACT_APP_API_URL}/uploads/${post.imageFile}`} 
+                                src={`data:${post.imageFileType};base64,${Buffer.from(post.imageFile).toString('base64')}`} 
                                 alt={post.title} 
                                 className="post-image" 
                             />
@@ -77,13 +77,13 @@ const PostList = ({ isAuthenticated }) => {
                     </div>
                 ))}
                 <div className="pagination">
-                {currentPage > 1 && (
-                    <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
-                )}
-                {currentPage < totalPages && (
-                    <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-                )}
-            </div>
+                    {currentPage > 1 && (
+                        <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                    )}
+                    {currentPage < totalPages && (
+                        <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                    )}
+                </div>
             </div>
             <div className="titles-section">
                 <h2>Contents</h2>
@@ -99,8 +99,6 @@ const PostList = ({ isAuthenticated }) => {
                     ))}
                 </ul>
             </div>
-
-           
         </div>
     );
 };
