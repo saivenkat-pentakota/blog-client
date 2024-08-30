@@ -8,6 +8,7 @@ const UpdatePost = ({ isAuthenticated }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageFile, setImageFile] = useState(null);
+    const [currentImage, setCurrentImage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const UpdatePost = ({ isAuthenticated }) => {
                 const { title, content, imageFile } = response.data;
                 setTitle(title);
                 setContent(content);
-                setImageFile(imageFile);
+                setCurrentImage(imageFile ? `${process.env.REACT_APP_API_URL}/uploads/${imageFile}` : '');
             } catch (error) {
                 console.error('Error fetching post:', error);
                 setErrorMessage('Failed to load post. Please try again.');
@@ -96,6 +97,12 @@ const UpdatePost = ({ isAuthenticated }) => {
                         type="file" 
                         onChange={handleFileChange} 
                     />
+                    {currentImage && (
+                        <div className="current-image">
+                            <p>Current Image:</p>
+                            <img src={currentImage} alt="Current" />
+                        </div>
+                    )}
                 </div>
                 <button type="submit">Update Post</button>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}

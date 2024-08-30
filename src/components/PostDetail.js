@@ -8,12 +8,24 @@ import deleteImg from '../Images/delete.png';
 const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`)
-            .then(response => setPost(response.data))
-            .catch(error => console.error(error));
+        const fetchPost = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`);
+                setPost(response.data);
+            } catch (err) {
+                console.error('Error fetching post:', err);
+                setError('Failed to load post.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPost();
     }, [id]);
 
     const handleEditClick = () => {
@@ -21,14 +33,22 @@ const PostDetail = () => {
     };
 
     const handleDeleteClick = () => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/posts/${id}`)
-            .then(() => {
-                navigate('/posts');
-            })
-            .catch(error => console.error('Error deleting post:', error));
+        const confirmDelete = window.confirm('Are you sure you want to delete this post? This action cannot be undone.');
+        if (confirmDelete) {
+            axios.delete(`${process.env.REACT_APP_API_URL}/posts/${id}`)
+                .then(() => {
+                    navigate('/posts');
+                })
+                .catch(err => {
+                    console.error('Error deleting post:', err);
+                    setError('Failed to delete post.');
+                });
+        }
     };
 
-    if (!post) return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
+
+    if (error) return <div className="error-message">{error}</div>;
 
     return (
         <div className='PostDetailContainer'>

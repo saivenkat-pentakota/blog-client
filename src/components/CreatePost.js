@@ -9,10 +9,28 @@ const CreatePost = ({ isAuthenticated }) => {
     const [imageFile, setImageFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [loading, setLoading] = useState(false); // For loading spinner
     const navigate = useNavigate(); 
 
     const handleFileChange = (e) => {
-        setImageFile(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+            const fileType = /jpeg|jpg|png|gif/.test(file.type);
+            const fileSize = file.size <= 5 * 1024 * 1024; // 5MB limit
+
+            if (!fileType) {
+                setErrorMessage('Invalid file type. Please upload an image (jpeg, jpg, png, gif).');
+                return;
+            }
+
+            if (!fileSize) {
+                setErrorMessage('File size too large. Please upload an image smaller than 5MB.');
+                return;
+            }
+
+            setImageFile(file);
+            setErrorMessage(''); // Clear error message if file is valid
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -31,6 +49,7 @@ const CreatePost = ({ isAuthenticated }) => {
         }
 
         setErrorMessage('');
+        setLoading(true); // Start loading spinner
 
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
@@ -43,11 +62,19 @@ const CreatePost = ({ isAuthenticated }) => {
             setContent('');
             setImageFile(null);
 
+            // Clear success message after 5 seconds
+            setTimeout(() => setSuccessMessage(''), 5000);
+
             // Navigate to the /posts page after successful post creation
             navigate('/posts');
         } catch (error) {
-            console.error('Error creating post:', error.response || error.message || error);
+            console.error('Error creating post:', error.response?.data?.message || error.message || error);
             setErrorMessage('Failed to create post. Please try again.');
+
+            // Clear error message after 5 seconds
+            setTimeout(() => setErrorMessage(''), 5000);
+        } finally {
+            setLoading(false); // Stop loading spinner
         }
     };
 
@@ -82,7 +109,8 @@ const CreatePost = ({ isAuthenticated }) => {
                         onChange={handleFileChange} 
                     />
                 </div>
-                <button type="submit">Create Post</button>
+                <button type="submit" disabled={loading}>Create Post</button>
+                {loading && <p className="loading-message">Creating post...</p>}
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}
             </form>
