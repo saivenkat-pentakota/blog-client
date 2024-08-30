@@ -1,20 +1,33 @@
 /* PostList.css */
 
 .PostListContainer {
-    max-width: 700px;
+    max-width: 1200px;
     margin: 1rem auto;
     padding: 1rem;
+    display: flex;
+    justify-content: space-between;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.posts-section {
+    flex: 3;
+    margin-right: 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
 .titles-section {
-    margin-bottom: 2rem;
-    padding: 8px;
+    flex: 1;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    width: 200px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #fff;
+    padding: 8px;
 }
 
 .titles-list {
@@ -114,61 +127,39 @@
 }
 
 /* Responsive Styles */
+@media (max-width: 1024px) {
+    .PostListContainer {
+        flex-direction: column;
+    }
+
+    .posts-section {
+        display: none;
+    }
+
+    .titles-section {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .PostListContainer {
         padding: 0.5rem;
     }
 
-    .titles-section h2,
-    .posts-section h2 {
-        font-size: 1.5rem;
-    }
-
     .title-item {
         font-size: 1.1rem;
-    }
-
-    .post h3 {
-        font-size: 1.25rem;
-    }
-
-    .post p {
-        font-size: 0.9rem;
-    }
-
-    .error-message {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .PostListContainer {
-        padding: 0.5rem;
     }
 
     .titles-section {
-        margin-top: 3rem;
-    }
-
-    .titles-section h2,
-    .posts-section h2 {
-        font-size: 1.25rem;
-    }
-
-    .title-item {
-        font-size: 1rem;
-    }
-
-    .post h3 {
-        font-size: 1.1rem;
-    }
-
-    .post p {
-        font-size: 0.8rem;
+        width: 100%;
     }
 
     .error-message {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .pagination {
@@ -177,5 +168,24 @@
 
     .pagination button {
         margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .PostListContainer {
+        padding: 0.5rem;
+    }
+
+    .title-item {
+        font-size: 1rem;
+    }
+
+    .titles-section {
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    .error-message {
+        font-size: 0.8rem;
     }
 }

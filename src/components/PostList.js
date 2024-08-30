@@ -11,7 +11,6 @@ const PostList = ({ isAuthenticated }) => {
     const [totalPosts, setTotalPosts] = useState(0);
     const postsPerPage = 5;
 
-    // Memoize fetchPosts to prevent unnecessary re-renders
     const fetchPosts = useCallback(async (page) => {
         if (!isAuthenticated) {
             return;
@@ -27,7 +26,7 @@ const PostList = ({ isAuthenticated }) => {
 
         try {
             const response = await axios.get(`${apiUrl}/posts?page=${page}&limit=${postsPerPage}`);
-            console.log(response.data); // Debugging line
+            console.log(response.data); 
             if (Array.isArray(response.data.posts)) {
                 setPosts(response.data.posts);
                 setTotalPosts(response.data.totalPosts);
@@ -42,7 +41,7 @@ const PostList = ({ isAuthenticated }) => {
 
     useEffect(() => {
         fetchPosts(currentPage);
-    }, [fetchPosts, currentPage]); // Include fetchPosts in the dependency array
+    }, [fetchPosts, currentPage]);
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
@@ -61,21 +60,6 @@ const PostList = ({ isAuthenticated }) => {
     return (
         <div className="PostListContainer">
             {error && <p className="error-message">{error}</p>}
-            <div className="titles-section">
-                <h2>Contents</h2>
-                <ul className="titles-list">
-                    {posts.map(post => (
-                        <li
-                            key={post.id}
-                            onClick={() => handleTitleClick(post.id)}
-                            className={`title-item ${selectedPostId === post.id ? 'active' : ''}`}
-                        >
-                            {post.title}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
             <div className="posts-section">
                 <h3>All Posts</h3>
                 {posts.map(post => (
@@ -92,6 +76,21 @@ const PostList = ({ isAuthenticated }) => {
                         <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
                     </div>
                 ))}
+            </div>
+
+            <div className="titles-section">
+                <h2>Contents</h2>
+                <ul className="titles-list">
+                    {posts.map(post => (
+                        <li
+                            key={post.id}
+                            onClick={() => handleTitleClick(post.id)}
+                            className={`title-item ${selectedPostId === post.id ? 'active' : ''}`}
+                        >
+                            {post.title}
+                        </li>
+                    ))}
+                </ul>
             </div>
 
             <div className="pagination">
