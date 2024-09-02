@@ -13,7 +13,7 @@ const UserPosts = () => {
     // Fetch user posts
     const fetchUserPosts = async () => {
       try {
-        const response = await axios.get('/userspost');
+        const response = await axios.get('/usersposts');
         setPosts(response.data.posts);
       } catch (err) {
         setError('Failed to fetch posts. Please try again.');
