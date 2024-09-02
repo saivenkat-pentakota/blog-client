@@ -7,12 +7,12 @@
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 /* Posts section styling */
 .posts-section {
-    flex: 2; 
+    flex: 2;
     margin-right: 1rem;
     background: #fff;
     padding: 1rem;
@@ -23,7 +23,7 @@
 
 /* Titles section styling */
 .titles-section {
-    flex: 1; 
+    flex: 1;
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #fff;
@@ -116,29 +116,22 @@
 .pagination button {
     margin: 0 0.5rem;
     padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    border-color: #007bff;
-    color: black;
+    border: 2px solid #007bff; /* Blue border */
+    background-color: transparent; /* No background color */
+    color: black; /* Black text */
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .pagination button:hover {
-    background-color: #0056b3;
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
 }
 
-.pagination button:disabled {
-    background-color: #e0e0e0;
-    cursor: not-allowed;
-    color: #888;
-}
-
-/* Styles for the active page button */
 .pagination button.active {
-    background-color: #0056b3;
-    color: white;
-    font-weight: bold;
-    border: 2px solid #0056b3;
+    background-color: #007bff; /* Blue background for active page */
+    color: white; /* White text for active page */
 }
 
 /* Responsive Styles */
@@ -160,6 +153,11 @@
         top: 0;
         max-height: none;
     }
+
+    .pagination button {
+        margin: 0.25rem 0;
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -168,34 +166,44 @@
     }
 
     .title-item {
-        font-size: 0.875rem;
+        font-size: 1.1rem;
     }
 
-    .post h3 {
-        font-size: 1.25rem;
+    .titles-section {
+        width: 100%;
     }
 
-    .post p {
-        font-size: 0.875rem;
+    .error-message {
+        font-size: 0.9rem;
     }
 
-    .pagination button {
-        padding: 0.375rem 0.75rem;
-        margin: 0 0.25rem;
-    }
-}
-
-@media (max-width: 576px) {
     .pagination {
         flex-direction: column;
     }
 
     .pagination button {
-        margin: 0.25rem 0;
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .PostListContainer {
+        padding: 0.5rem;
+    }
+
+    .posts-section {
         width: 100%;
     }
 
+    .title-item {
+        font-size: 1rem;
+    }
+
     .titles-section {
-        display: none; 
+        display: none;
+    }
+
+    .error-message {
+        font-size: 0.8rem;
     }
 }
