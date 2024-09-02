@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './PostList.css';
 
 const PostList = ({ isAuthenticated }) => {
@@ -10,6 +10,7 @@ const PostList = ({ isAuthenticated }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPosts, setTotalPosts] = useState(0);
     const postsPerPage = 5;
+    const navigate = useNavigate();
 
     const fetchPosts = useCallback(async (page) => {
         if (!isAuthenticated) {
@@ -45,6 +46,7 @@ const PostList = ({ isAuthenticated }) => {
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
+        navigate(`/posts/${id}`); // Redirect to the post's detail page
     };
 
     const handlePageChange = (newPage) => {
