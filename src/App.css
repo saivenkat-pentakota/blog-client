@@ -15,6 +15,7 @@
   border-radius: 12px 0 0 0 !important;
   padding: 1rem;
   overflow-y: auto;
+  height: 100vh;
 }
 
 
@@ -28,8 +29,8 @@
 
   .main-content {
     padding: 0.5rem;
-    margin-top: 60px; /* For header adjustment */
-    margin-left: 0; /* No left margin on small screens */
+    margin-top: 60px; 
+    margin-left: 0; 
   }
 
 

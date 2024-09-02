@@ -3,6 +3,8 @@
 /* Container styling */
 .PostListContainer {
     max-width: 1350px;
+    margin-top:0%;
+    margin-left: 2rem;
     margin: 1rem auto;
     padding: 1rem;
     display: flex;
