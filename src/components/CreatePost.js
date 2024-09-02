@@ -10,32 +10,35 @@ const CreatePost = ({ isAuthenticated, userId }) => {
     const [imagePreview, setImagePreview] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const [loading, setLoading] = useState(false); // For loading spinner
-    const navigate = useNavigate(); 
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             const fileType = /jpeg|jpg|png|gif/.test(file.type);
-            const fileSize = file.size <= 5 * 1024 * 1024; // 5MB limit
+            const fileSize = file.size <= 5 * 1024 * 1024;
 
             if (!fileType) {
                 setErrorMessage('Invalid file type. Please upload an image (jpeg, jpg, png, gif).');
-                setImageFile(null); // Clear file if invalid
-                setImagePreview(''); // Clear preview if invalid
+                setImageFile(null);
+                setImagePreview('');
                 return;
             }
 
             if (!fileSize) {
                 setErrorMessage('File size too large. Please upload an image smaller than 5MB.');
-                setImageFile(null); // Clear file if invalid
-                setImagePreview(''); // Clear preview if invalid
+                setImageFile(null);
+                setImagePreview('');
                 return;
             }
 
             setImageFile(file);
-            setImagePreview(URL.createObjectURL(file)); // Set preview URL
-            setErrorMessage(''); // Clear error message if file is valid
+            setImagePreview(URL.createObjectURL(file));
+            setErrorMessage('');
+        } else {
+            setImageFile(null);
+            setImagePreview('');
         }
     };
 
@@ -50,13 +53,13 @@ const CreatePost = ({ isAuthenticated, userId }) => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
-        formData.append('userId', userId); // Add userId to form data
+        formData.append('userId', userId);
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
 
         setErrorMessage('');
-        setLoading(true); // Start loading spinner
+        setLoading(true);
 
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
@@ -68,26 +71,22 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             setTitle('');
             setContent('');
             setImageFile(null);
-            setImagePreview(''); // Clear image preview
-
-            // Clear success message after 5 seconds
+            setImagePreview('');
+            
             setTimeout(() => setSuccessMessage(''), 5000);
-
-            // Navigate to the /posts page after successful post creation
             navigate('/posts');
         } catch (error) {
             console.error('Error creating post:', error.response?.data?.message || error.message || error);
             setErrorMessage('Failed to create post. Please try again.');
-
-            // Clear error message after 5 seconds
+            
             setTimeout(() => setErrorMessage(''), 5000);
         } finally {
-            setLoading(false); // Stop loading spinner
+            setLoading(false);
         }
     };
 
     if (!isAuthenticated) {
-        return <p className="error-message">Please Signup or Login to create a post.</p>;
+        return <p className="error-message">Please sign up or log in to create a post.</p>;
     }
 
     return (
@@ -114,10 +113,11 @@ const CreatePost = ({ isAuthenticated, userId }) => {
                     ></textarea>
                 </div>
                 <div className="image-upload">
-                    <label htmlFor="imageFile">Upload Image:</label>
+                    <label htmlFor="imageFile">Upload Image (optional):</label>
                     <input 
                         id="imageFile"
                         type="file" 
+                        accept="image/*"
                         onChange={handleFileChange} 
                     />
                     {imagePreview && (
