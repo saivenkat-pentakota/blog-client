@@ -22,15 +22,17 @@ const Login = ({ setIsAuthenticated }) => {
         e.preventDefault();
         setError('');
         setSuccess('');
-        setLoading(false);
+        setLoading(true); // Set loading to true as soon as the form is submitted
 
         if (!validateEmail(email)) {
             setError('Invalid email format');
+            setLoading(false); // Hide spinner if there is an error
             return;
         }
 
         if (password.length < 8) {
             setError('Password must be at least 8 characters long');
+            setLoading(false); // Hide spinner if there is an error
             return;
         }
 
@@ -38,18 +40,20 @@ const Login = ({ setIsAuthenticated }) => {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
                 setSuccess('Login successful!');
-                setLoading(true);
                 Cookies.set('userEmail', email, { expires: 7 });
                 setIsAuthenticated(true);
                 setTimeout(() => {
                     setLoading(false);
                     navigate('/posts');
-                }, 2000);
+                }, 2000); // Delay to show spinner
             }
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed');
+            setLoading(false); // Hide spinner if there is an error
         }
     };
+
+    console.log('Loading:', loading); // Debug loading state
 
     return (
         <div className="login-container">
@@ -82,7 +86,7 @@ const Login = ({ setIsAuthenticated }) => {
                     Don't have an account? <Link to="/signup">Sign up</Link>
                 </p>
             </form>
-            {loading && <Spinner />   }
+            {loading && <Spinner />} {/* Show spinner when loading */}
         </div>
     );
 };
