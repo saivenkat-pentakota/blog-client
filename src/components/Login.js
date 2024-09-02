@@ -37,18 +37,20 @@ const Login = ({ setIsAuthenticated }) => {
         }
 
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
-            if (res.status === 200) {
-                setSuccess('Login successful!');
-                Cookies.set('userEmail', email, { expires: 7 });
-                setIsAuthenticated(true);
-                setTimeout(() => {
-                    setLoading(false);
-                    navigate('/posts');
-                }, 2000);
-            }
-        } catch (err) {
-            setError(err.response?.data?.error || 'Login failed');
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+                email,
+                password
+            });
+
+            Cookies.set('token', response.data.token, { expires: 1 }); // Store token in cookies
+            setIsAuthenticated(true);
+            setSuccess('Login successful!');
+            setTimeout(() => {
+                navigate('/');
+            }, 1500); // Redirect after 1.5 seconds
+        } catch (error) {
+            setError(error.response?.data?.message || 'Login failed');
+        } finally {
             setLoading(false);
         }
     };
@@ -56,9 +58,7 @@ const Login = ({ setIsAuthenticated }) => {
     return (
         <div className="login-container">
             <h2>Login</h2>
-            {error && <div className="popup error">{error}</div>}
-            {success && <div className="popup success">{success}</div>}
-            <form onSubmit={handleLogin} className="login-form">
+            <form onSubmit={handleLogin}>
                 <div className="form-group">
                     <label>Email:</label>
                     <input
@@ -66,7 +66,6 @@ const Login = ({ setIsAuthenticated }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        autoComplete='email'
                     />
                 </div>
                 <div className="form-group">
@@ -76,15 +75,17 @@ const Login = ({ setIsAuthenticated }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        autoComplete='password'
                     />
                 </div>
-                <button type="submit" className="login-button" disabled={loading}>Login</button>
-                <p>
-                    Don't have an account? <Link to="/signup">Sign up</Link>
-                </p>
+                {error && <div className="error">{error}</div>}
+                {success && <div className="success">{success}</div>}
+                <button type="submit" disabled={loading}>
+                    {loading ? <Spinner /> : 'Login'}
+                </button>
             </form>
-            {loading && <Spinner />}
+            <div className="navigation-links">
+                <Link to="/signup">Don't have an account? Sign Up</Link>
+            </div>
         </div>
     );
 };
