@@ -2,6 +2,7 @@
 
 /* Container styling */
 .PostListContainer {
+    max-width: 1350px;
     margin-left: 2.5rem;
     margin: 1rem auto;
     padding: 1rem;
