@@ -46,7 +46,7 @@ const PostList = ({ isAuthenticated }) => {
 
     const handleTitleClick = (id) => {
         setSelectedPostId(id);
-        navigate(`/posts/${id}`); // Redirect to the post's detail page
+        navigate(`/posts/${id}`);
     };
 
     const handlePageChange = (newPage) => {
@@ -56,30 +56,13 @@ const PostList = ({ isAuthenticated }) => {
     const totalPages = Math.ceil(totalPosts / postsPerPage);
 
     if (!isAuthenticated) {
-        return <p className="error-message">Please Signup or Login to see the data in Home Page.</p>;
+        return <p className="error-message">Please Signup or Login to see the data on the Home Page.</p>;
     }
 
     return (
         <div className="PostListContainer">
             {error && <p className="error-message">{error}</p>}
             <div className="posts-section">
-                <div className="pagination">
-                    {currentPage > 1 && (
-                        <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
-                    )}
-                    {[...Array(totalPages)].map((_, index) => (
-                        <button 
-                            key={index + 1}
-                            onClick={() => handlePageChange(index + 1)}
-                            className={currentPage === index + 1 ? 'active' : ''}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
-                    {currentPage < totalPages && (
-                        <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-                    )}
-                </div>
                 {posts.length > 0 ? (
                     posts.map(post => (
                         <div key={post.id} className="post">
@@ -92,7 +75,7 @@ const PostList = ({ isAuthenticated }) => {
                             )}
                             <h3>{post.title}</h3>
                             <p>{post.content.substring(0, 200)}...</p>
-                            <Link to={`/posts/${post.id}`} className="read-more-link">Read More</Link>
+                            <Link to={`/posts/${post.id}`} className="read-more-link">Read More...</Link>
                         </div>
                     ))
                 ) : (
@@ -100,19 +83,29 @@ const PostList = ({ isAuthenticated }) => {
                 )}
                 <div className="pagination">
                     {currentPage > 1 && (
-                        <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                        <button 
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            className="pagination-button"
+                        >
+                            Previous
+                        </button>
                     )}
                     {[...Array(totalPages)].map((_, index) => (
                         <button 
                             key={index + 1}
                             onClick={() => handlePageChange(index + 1)}
-                            className={currentPage === index + 1 ? 'active' : ''}
+                            className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
                         >
                             {index + 1}
                         </button>
                     ))}
                     {currentPage < totalPages && (
-                        <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                        <button 
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            className="pagination-button"
+                        >
+                            Next
+                        </button>
                     )}
                 </div>
             </div>

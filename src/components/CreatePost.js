@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './CreatePost.css';
 
-const CreatePost = ({ isAuthenticated }) => {
+const CreatePost = ({ isAuthenticated, userId }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [imageFile, setImageFile] = useState(null);
@@ -50,6 +50,7 @@ const CreatePost = ({ isAuthenticated }) => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
+        formData.append('userId', userId); // Add userId to form data
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
@@ -92,7 +93,7 @@ const CreatePost = ({ isAuthenticated }) => {
     return (
         <div className="create-post-form">
             <form onSubmit={handleSubmit}>
-            <div onClick={() => navigate('/posts')} className="navigate">←</div>
+                <div onClick={() => navigate('/posts')} className="navigate">←</div>
                 <div>
                     <label htmlFor="title">Title:</label>
                     <input 

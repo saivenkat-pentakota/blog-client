@@ -5,7 +5,7 @@ import './PostDetail.css';
 import editImg from '../Images/edit.png';
 import deleteImg from '../Images/delete.png';
 
-const PostDetail = () => {
+const PostDetail = ({ userId, isAuthenticated }) => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -54,20 +54,22 @@ const PostDetail = () => {
         <div className='PostDetailContainer'>
             <div className='button-container'>
                 <div onClick={() => navigate('/posts')} className="navigate">←</div>
-                <div className='action-buttons'>
-                    <img 
-                        src={editImg} 
-                        alt='Edit' 
-                        className='action-image edit-image' 
-                        onClick={handleEditClick} 
-                    />
-                    <img 
-                        src={deleteImg} 
-                        alt='Delete' 
-                        className='action-image delete-image' 
-                        onClick={handleDeleteClick} 
-                    />
-                </div>
+                {isAuthenticated && post.userId === userId && (
+                    <div className='action-buttons'>
+                        <img 
+                            src={editImg} 
+                            alt='Edit' 
+                            className='action-image edit-image' 
+                            onClick={handleEditClick} 
+                        />
+                        <img 
+                            src={deleteImg} 
+                            alt='Delete' 
+                            className='action-image delete-image' 
+                            onClick={handleDeleteClick} 
+                        />
+                    </div>
+                )}
             </div>
             <h2>{post.title}</h2>
             <p>{post.content}</p>

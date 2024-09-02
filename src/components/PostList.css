@@ -2,12 +2,11 @@
 
 /* Container styling */
 .PostListContainer {
-    max-width: 1400px;
-    margin-left: 3rem !important;
-    padding: 1rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: 3rem !important;
+    padding: 1rem;    
 }
 
 /* Posts section styling */

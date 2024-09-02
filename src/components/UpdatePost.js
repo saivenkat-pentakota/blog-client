@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './UpdatePost.css';
 
-const UpdatePost = ({ isAuthenticated }) => {
+const UpdatePost = ({ isAuthenticated, userId }) => {
     const { id } = useParams();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -45,6 +45,7 @@ const UpdatePost = ({ isAuthenticated }) => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
+        formData.append('userId', userId); // Add userId to form data
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
