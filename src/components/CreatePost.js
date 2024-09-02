@@ -61,7 +61,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
         setLoading(true);
     
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -83,6 +83,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             setLoading(false);
         }
     };
+    
     
     
 
