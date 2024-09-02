@@ -116,22 +116,24 @@
 .pagination button {
     margin: 0 0.5rem;
     padding: 0.5rem 1rem;
-    border: 2px solid #007bff; /* Blue border */
-    background-color: transparent; /* No background color */
-    color: black; /* Black text */
+    border: 2px solid #94a0a0; 
+    background-color: transparent; 
+    color: black;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .pagination button:hover {
-    background-color: #007bff; /* Blue background on hover */
-    color: white; /* White text on hover */
+    background-color: #007bff; 
+    border: none;
+    color: white; 
 }
 
 .pagination button.active {
-    background-color: #007bff; /* Blue background for active page */
-    color: white; /* White text for active page */
+    background-color: #007bff;
+    border: none;
+    color: white; 
 }
 
 /* Responsive Styles */
