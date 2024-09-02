@@ -43,8 +43,8 @@ const SideBar = ({
               <img src={bookImg} alt="bookImgIcon" />
             </Link>
           </li>
-          <li className={location.pathname === "/file" ? "active" : ""}>
-            <Link to="/file" onClick={handleLinkClick}>
+          <li className={location.pathname === "/userspost" ? "active" : ""}>
+            <Link to="/userspost" onClick={handleLinkClick}>
               <img src={fileImg} alt="fileImgIcon" />
             </Link>
           </li>
@@ -73,9 +73,7 @@ const SideBar = ({
             src={logoutButtonIcon}
             alt="logout"
             className="logout-button"
-            onClick={() => {
-              handleLogout();
-            }}
+            onClick={handleLogout}
           />
         </div>
       )}

@@ -11,6 +11,7 @@ import ProfilePage from './components/ProfilePage';
 import UpdatePost from './components/UpdatePost';
 
 import './App.css'; 
+import UserPosts from './components/UserPosts';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +49,7 @@ const App = () => {
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/settings" element={<div>Settings Page</div>} />
                   <Route path="*" element={<Navigate to="/posts" />} />
+                  <Route path="/userspost" element={<UserPosts />} />
                 </Routes>
               </main>
             </div>

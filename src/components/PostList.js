@@ -27,7 +27,7 @@ const PostList = ({ isAuthenticated }) => {
 
         try {
             const response = await axios.get(`${apiUrl}/posts?page=${page}&limit=${postsPerPage}`);
-            console.log(response.data); 
+            console.log(response.data);
             if (response.data.posts && Array.isArray(response.data.posts)) {
                 setPosts(response.data.posts);
                 setTotalPosts(response.data.totalPosts);
