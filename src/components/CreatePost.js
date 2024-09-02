@@ -44,8 +44,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Check for required fields
+    
         if (!title || !content) {
             setErrorMessage('Both title and content are required.');
             return;
@@ -62,7 +61,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
         setLoading(true);
     
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -73,7 +72,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             setImageFile(null);
             setImagePreview('');
     
-            // Redirect to a different page, e.g., posts list
+            setTimeout(() => setSuccessMessage(''), 5000);
             navigate('/posts');
         } catch (error) {
             console.error('Error creating post:', error.response?.data?.message || error.message || error);
@@ -84,6 +83,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             setLoading(false);
         }
     };
+    
     
 
     if (!isAuthenticated) {
