@@ -61,7 +61,7 @@ const PostList = ({ isAuthenticated }) => {
         <div className="PostListContainer">
             {error && <p className="error-message">{error}</p>}
             <div className="posts-section">
-            <div className="pagination">
+                <div className="pagination">
                     {currentPage > 1 && (
                         <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
                     )}
