@@ -21,7 +21,7 @@ const App = () => {
     const fetchUserData = async () => {
       try {
         // Fetch user data from the API
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/me`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/user`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
