@@ -15,10 +15,39 @@ import './App.css';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [userId, setUserId] = useState(null); // Added userId state
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    console.log('API URL:', process.env.REACT_APP_API_URL);
+    const fetchUserData = async () => {
+      try {
+        // Fetch user data from the API
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/me`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setIsAuthenticated(true);
+          setUserId(userData.id); // Assuming userData contains the user ID
+        } else {
+          setIsAuthenticated(false);
+          setUserId(null);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setIsAuthenticated(false);
+        setUserId(null);
+      }
+    };
+
+    if (localStorage.getItem('token')) {
+      fetchUserData();
+    } else {
+      setIsAuthenticated(false);
+      setUserId(null);
+    }
   }, []);
 
   const toggleSidebar = () => {
@@ -48,8 +77,8 @@ const App = () => {
                   <Route path="/posts" element={<PostList isAuthenticated={isAuthenticated} />} />
                   <Route path="/posts/:id" element={<PostDetail />} />
                   <Route path="/create" element={<CreatePost isAuthenticated={isAuthenticated} userId={userId} />} />
-                  <Route path="/update-post" element={<UpdatePost />} />
-                  <Route path="/update-post/:id" element={<UpdatePost isAuthenticated={isAuthenticated} />} />
+                  <Route path="/update-post" element={<UpdatePost isAuthenticated={isAuthenticated} userId={userId} />} />
+                  <Route path="/update-post/:id" element={<UpdatePost isAuthenticated={isAuthenticated} userId={userId} />} />
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/settings" element={<div>Settings Page</div>} />
                   <Route path="*" element={<Navigate to="/posts" />} />

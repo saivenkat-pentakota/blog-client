@@ -58,13 +58,6 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             formData.append('imageFile', imageFile);
         }
 
-        console.log('Form Data:', {
-            title,
-            content,
-            imageFile: imageFile ? imageFile.name : null,
-            userId
-        });
-
         setErrorMessage('');
         setLoading(true);
 
@@ -72,6 +65,8 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    // Add token if needed
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             });
             setSuccessMessage('Post created successfully!');
@@ -93,7 +88,8 @@ const CreatePost = ({ isAuthenticated, userId }) => {
     };
 
     if (!isAuthenticated) {
-        return <p className="error-message">Please sign up or log in to create a post.</p>;
+        navigate('/login'); // Redirect to login if not authenticated
+        return null; // Prevent rendering the form while redirecting
     }
 
     return (
