@@ -14,34 +14,11 @@ import './App.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userId, setUserId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [userId, setUserId] = useState(null); // Added userId state
 
   useEffect(() => {
     console.log('API URL:', process.env.REACT_APP_API_URL);
-
-    // Fetch user info if authenticated
-    const fetchUserInfo = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/test-auth`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setUserId(data.userId);
-          setIsAuthenticated(true);
-        }
-      } catch (error) {
-        console.error('Failed to fetch user info:', error);
-      }
-    };
-
-    if (localStorage.getItem('token')) {
-      fetchUserInfo();
-    }
   }, []);
 
   const toggleSidebar = () => {
