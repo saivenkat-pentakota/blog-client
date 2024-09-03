@@ -57,6 +57,12 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             formData.append('imageFile', imageFile);
         }
     
+        console.log('Form Data:', {
+            title,
+            content,
+            imageFile: imageFile ? imageFile.name : null,
+        });
+    
         setErrorMessage('');
         setLoading(true);
     
@@ -83,6 +89,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             setLoading(false);
         }
     };
+    
     
     
     

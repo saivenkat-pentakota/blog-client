@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
@@ -9,13 +9,17 @@ import SideBar from './components/SideBar';
 import Header from './components/Header';
 import ProfilePage from './components/ProfilePage';
 import UpdatePost from './components/UpdatePost';
-
 import './App.css'; 
 import UserPosts from './components/UserPosts';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Log the API URL when the component mounts
+  useEffect(() => {
+    console.log('API URL:', process.env.REACT_APP_API_URL);
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prev => !prev);
@@ -53,9 +57,6 @@ const App = () => {
                 </Routes>
               </main>
             </div>
-            {/* <footer>
-              <p>&copy; 2024 My Blog</p>
-            </footer> */}
           </>
         ) : (
           <Routes>
