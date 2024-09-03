@@ -9,15 +9,39 @@ import SideBar from './components/SideBar';
 import Header from './components/Header';
 import ProfilePage from './components/ProfilePage';
 import UpdatePost from './components/UpdatePost';
-import './App.css'; 
 import UserPosts from './components/UserPosts';
+import './App.css'; 
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     console.log('API URL:', process.env.REACT_APP_API_URL);
+
+    // Fetch user info if authenticated
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/test-auth`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setUserId(data.userId);
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        console.error('Failed to fetch user info:', error);
+      }
+    };
+
+    if (localStorage.getItem('token')) {
+      fetchUserInfo();
+    }
   }, []);
 
   const toggleSidebar = () => {
@@ -46,7 +70,7 @@ const App = () => {
                 <Routes>
                   <Route path="/posts" element={<PostList isAuthenticated={isAuthenticated} />} />
                   <Route path="/posts/:id" element={<PostDetail />} />
-                  <Route path="/create" element={<CreatePost isAuthenticated={isAuthenticated} />} />
+                  <Route path="/create" element={<CreatePost isAuthenticated={isAuthenticated} userId={userId} />} />
                   <Route path="/update-post" element={<UpdatePost />} />
                   <Route path="/update-post/:id" element={<UpdatePost isAuthenticated={isAuthenticated} />} />
                   <Route path="/profile" element={<ProfilePage />} />
@@ -60,7 +84,7 @@ const App = () => {
         ) : (
           <Routes>
             <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUserId={setUserId} />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )}

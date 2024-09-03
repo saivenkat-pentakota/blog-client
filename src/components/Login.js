@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import './Login.css';
 import Spinner from './Spinner'; 
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = ({ setIsAuthenticated, setUserId }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -39,9 +39,12 @@ const Login = ({ setIsAuthenticated }) => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
-                setSuccess('Login successful!');
+                const { token, userId } = res.data; // Assuming the response contains token and userId
+                Cookies.set('token', token, { expires: 7 }); // Store the token in cookies
                 Cookies.set('userEmail', email, { expires: 7 });
                 setIsAuthenticated(true);
+                setUserId(userId); // Set userId from response
+                setSuccess('Login successful!');
                 setTimeout(() => {
                     setLoading(false);
                     navigate('/posts');
