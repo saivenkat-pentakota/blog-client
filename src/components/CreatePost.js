@@ -44,47 +44,52 @@ const CreatePost = ({ isAuthenticated, userId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         if (!title || !content || !userId) {
             setErrorMessage('Title, content, and userId are required.');
             return;
         }
-
+    
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
-        formData.append('userId', userId); // Add userId to form data
+        formData.append('userId', userId);
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
-
+    
         setErrorMessage('');
         setLoading(true);
-
+    
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${localStorage.getItem('token')}` // Add token if needed
                 },
             });
+            console.log('Response data:', response.data);
+    
             setSuccessMessage('Post created successfully!');
             setTitle('');
             setContent('');
             setImageFile(null);
             setImagePreview('');
-
+    
             setTimeout(() => setSuccessMessage(''), 5000);
             navigate('/posts');
         } catch (error) {
             console.error('Error creating post:', error.response?.data?.message || error.message || error);
             setErrorMessage('Failed to create post. Please try again.');
-
+    
             setTimeout(() => setErrorMessage(''), 5000);
         } finally {
             setLoading(false);
         }
     };
+    
+    
+    
 
     if (!isAuthenticated) {
         navigate('/login'); // Redirect to login if not authenticated
