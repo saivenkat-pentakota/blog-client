@@ -39,7 +39,7 @@ const Login = ({ setIsAuthenticated, setUserId }) => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             if (res.status === 200) {
-                const { token, userId } = res.data; // Assuming the response contains token and userId
+                const { token, userId } = res.data; 
                 Cookies.set('token', token, { expires: 7 }); // Store the token in cookies
                 Cookies.set('userEmail', email, { expires: 7 });
                 setIsAuthenticated(true);
