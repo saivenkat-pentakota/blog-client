@@ -65,8 +65,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             await axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    // Add token if needed
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Add token if needed
                 },
             });
             setSuccessMessage('Post created successfully!');
