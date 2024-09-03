@@ -16,7 +16,6 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Log the API URL when the component mounts
   useEffect(() => {
     console.log('API URL:', process.env.REACT_APP_API_URL);
   }, []);

@@ -53,6 +53,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
+        formData.append('userId', userId);  // Include userId in the form data
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
@@ -61,6 +62,7 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             title,
             content,
             imageFile: imageFile ? imageFile.name : null,
+            userId,  // Log userId for debugging
         });
     
         setErrorMessage('');
@@ -89,10 +91,6 @@ const CreatePost = ({ isAuthenticated, userId }) => {
             setLoading(false);
         }
     };
-    
-    
-    
-    
 
     if (!isAuthenticated) {
         return <p className="error-message">Please sign up or log in to create a post.</p>;
